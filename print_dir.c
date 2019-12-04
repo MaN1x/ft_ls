@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:04:01 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/04 16:04:01 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/04 19:56:32 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ void	print_dir(t_dir *dir)
 {
 	while (dir)
 	{
-		printf("dir_name: \"%s\"\n", dir->dir_name);
+		//if (*dir->dir_name != '.')
+		{
+			printf("dir_name: \"%s\"\n", dir->dir_name);
+			//printf("*files info*\n");
+		}
 		dir = dir->next;
 	}
 }

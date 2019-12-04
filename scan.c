@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 21:48:49 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/04 17:38:09 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/04 19:56:32 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,51 @@
 	return (0);
 */
 
-static void	scan_directory(char *path, t_dir **dir)
+static void	free_list(t_list **path_list)
 {
-	t_file_info	*file;
+	t_list	*list;
+	t_list	*tmp;
+
+	list = *path_list;
+	while (list)
+	{
+		tmp = list->next;
+		free(list->content);
+		free(list);
+		list = tmp;
+	}
 }
 
-void	scan(t_list *path_list, t_dir **dir)
+static void	scan_directory(char *path, t_list **dir)
 {
+	t_dir			*tmp;
+	DIR				*dirp;
+	struct dirent	*direntp;
+	struct stat		buf;
+
+	dirp = opendir(path);
+	while ((direntp = readdir(dirp)))
+	{
+		stat(direntp->d_name, &buf);
+		if (S_ISDIR(buf.st_mode))
+		{
+			tmp = dir_new(direntp->d_name);
+			dir_add(dir, tmp);
+		}
+	}
+	closedir(dirp);
+}
+
+void	scan(t_list *path_list)
+{
+	t_list	*dir;
+
+	dir = NULL;
 	while (path_list)
 	{
-		scan_directory(path_list->content, dir);
+		scan_directory(path_list->content, &dir);
+		print_dir(dir);
 		path_list = path_list->next;
 	}
+	free_list(&dir);
 }

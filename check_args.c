@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:24:53 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/04 17:38:09 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/04 19:56:32 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ static void	check_flag(char *argv)
 
 void		check_args(int argc, char **argv, t_list **path_list)
 {
-	int arg_number;
+	int		arg_number;
 	t_list	*tmp_path;
-	int flags;
+	int		flags;
 
 	flags = 1;
 	arg_number = 0;

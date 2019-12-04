@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:20:43 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/04 17:38:09 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/04 20:01:33 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,17 @@ typedef struct	s_file_info
 	struct file_info	*next;
 }				t_file_info;
 
-typedef struct	s_dir
+typedef struct		s_dir
 {
-	char 		*dir_name;
-	t_file_info	file;
+	char 			*dir_name;
+	t_file_info		file;
 	struct s_dir	*next;
-}				t_dir;
+}					t_dir;
 
-void	check_args(int argc, char **argv, t_list **path_list);
-void	scan(t_list *path_list, t_dir **dir);
-t_dir	*dir_new(char *dir_name, t_file_info file);
-void	dir_add(t_dir **dirh, t_dir *new_dir);
+void				check_args(int argc, char **argv, t_list **path_list);
+void				scan(t_list *path_list);
+t_dir				*dir_new(char *dir_name);
+void				dir_add(t_dir **dirh, t_dir *new_dir);
+void				print_dir(t_dir *dir);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 18:44:36 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/02 22:11:58 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/04 19:53:19 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,7 @@ static void	sort_path_list(t_list **path_list)
 int	main(int argc, char **argv)
 {
 	t_list	*path_list;
-	t_dir	*dir;
 
-	dir = NULL;
 	path_list = NULL;
 	check_args(argc, argv, &path_list);
 	printf("============FLAGS================\n");
@@ -86,7 +84,7 @@ int	main(int argc, char **argv)
 	printf("=================\n");
 	sort_path_list(&path_list);
 	print_path_list(path_list);
-	//scan(path_list, &dir);
+	scan(path_list);
 	free_path_list(&path_list);
 	//print_path_list(path_list);
 	return 0;
