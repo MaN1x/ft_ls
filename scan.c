@@ -26,24 +26,24 @@
 	return (0);
 */
 
-static void	free_list(t_list **path_list)
+static void	free_list(t_dir **path_list)
 {
-	t_list	*list;
-	t_list	*tmp;
+	t_dir	*list;
+	t_dir	*tmp;
 
 	list = *path_list;
 	while (list)
 	{
 		tmp = list->next;
-		free(list->content);
+		free(list->dir_name);
 		free(list);
 		list = tmp;
 	}
 }
 
-static void	scan_directory(char *path, t_list **dir)
+static void	scan_directory(char *path, t_dir **dir)
 {
-	t_dir			*tmp;
+	char 			*full_path;
 	DIR				*dirp;
 	struct dirent	*direntp;
 	struct stat		buf;
@@ -51,19 +51,18 @@ static void	scan_directory(char *path, t_list **dir)
 	dirp = opendir(path);
 	while ((direntp = readdir(dirp)))
 	{
-		stat(direntp->d_name, &buf);
+		full_path = ft_strjoin(path, direntp->d_name);
+		stat(full_path, &buf);
 		if (S_ISDIR(buf.st_mode))
-		{
-			tmp = dir_new(direntp->d_name);
-			dir_add(dir, tmp);
-		}
+			dir_add(dir, direntp->d_name);
+		free(full_path);
 	}
 	closedir(dirp);
 }
 
 void	scan(t_list *path_list)
 {
-	t_list	*dir;
+	t_dir	*dir;
 
 	dir = NULL;
 	while (path_list)

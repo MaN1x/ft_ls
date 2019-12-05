@@ -18,18 +18,18 @@ t_dir	*dir_new(char *dir_name)
 
 	if (!(dir = (t_dir*)malloc(sizeof(t_dir))))
 		exit(0);
-	dir->dir_name = dir_name;
+	dir->dir_name = (char*)malloc(sizeof(ft_strlen(dir_name)));
+	ft_strcpy(dir->dir_name, dir_name);
 	dir->next = NULL;
 	return (dir);
 }
 
-void	dir_add(t_dir **dirh, t_dir *new_dir)
+void	dir_add(t_dir **dirh, char *dir_name)
 {
 	if (*dirh == NULL)
-		*dirh = new_dir;
+		*dirh = dir_new(dir_name);
+	else if ((*dirh)->next == NULL)
+		(*dirh)->next = dir_new(dir_name);
 	else
-	if ((*dirh)->next == NULL)
-		(*dirh)->next = new_dir;
-	else
-		dir_add(&(*dirh)->next, new_dir);
+		dir_add(&(*dirh)->next, dir_name);
 }

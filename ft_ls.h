@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <sys/stat.h>
 # include "lib/libft.h"
+# include <errno.h>
 
 typedef enum	e_print_format
 {
@@ -69,7 +70,7 @@ typedef struct		s_dir
 void				check_args(int argc, char **argv, t_list **path_list);
 void				scan(t_list *path_list);
 t_dir				*dir_new(char *dir_name);
-void				dir_add(t_dir **dirh, t_dir *new_dir);
+void				dir_add(t_dir **dirh, char *dir_name);
 void				print_dir(t_dir *dir);
 
 #endif
