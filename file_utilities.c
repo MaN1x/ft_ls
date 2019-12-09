@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dir_utilities.c                                    :+:      :+:    :+:   */
+/*   file_utilities.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/26 16:49:03 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/09 23:29:11 by mjoss            ###   ########.fr       */
+/*   Created: 2019/12/09 22:52:44 by mjoss             #+#    #+#             */
+/*   Updated: 2019/12/09 23:38:00 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_dir	*dir_new(char *dir_name)
+t_file_info  *file_new(void)
 {
-	t_dir	*dir;
+	t_file_info *file;
 
-	if (!(dir = (t_dir*)malloc(sizeof(t_dir))))
-		exit(0);
-	dir->file = NULL;
-	dir->dir_name = (char*)malloc(sizeof(ft_strlen(dir_name)));
-	ft_strcpy(dir->dir_name, dir_name);
-	dir->next = NULL;
-	return (dir);
+	if (!(file = (t_file_info*)malloc(sizeof(t_file_info))))
+		exit (0);
+	return (file);
 }
 
-void	dir_add(t_dir **dirh, char *dir_name)
+void		file_add(t_file_info **file, t_file_info *new_file)
 {
-	if (*dirh == NULL)
-		(*dirh) = dir_new(dir_name);
+	if (*file == NULL)
+		*file = new_file;
 	else
-		dir_add(&(*dirh)->next, dir_name);
+		file_add(&(*file)->next, new_file);
 }

@@ -20,6 +20,7 @@ void	print_dir(t_dir *dir)
 		//if (*dir->dir_name != '.')
 		//{
 			printf("dir_name: \"%s\"\n", dir->dir_name);
+			printf("file: \"%s\"\n", dir->file->file_name);
 			//printf("*files info*\n");
 		//}
 		dir = dir->next;
