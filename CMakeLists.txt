@@ -2,7 +2,7 @@ project(ft_ls C)
 
 set(CMAKE_C_STANDARD 99)
 
-set(SOURCE main.c check_args.c scan.c dir_utilities.c print_dir.c)
+set(SOURCE main.c check_args.c scan.c dir_utilities.c print_dir.c file_utilities.c)
 
 set(SOURCE_LIB  ./lib/ft_atoi.c
                 ./lib/ft_bzero.c

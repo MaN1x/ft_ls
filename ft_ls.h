@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:20:43 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/09 23:30:20 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/10 22:55:36 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,8 @@ void					dir_add(t_dir **dirh, char *dir_name);
 void					print_dir(t_dir *dir);
 t_file_info				*file_new(void);
 void					file_add(t_file_info **file, t_file_info *new_file);
+void					free_files(t_file_info **fileh);
+void					free_dirlist(t_dir **path_list);
+t_dir					*dir_getend(t_dir *dir);
 
 #endif
