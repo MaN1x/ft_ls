@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 22:52:44 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/10 23:39:00 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/17 23:39:07 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_file_info		*file_new(void)
 	file->next = NULL;
 	file->gr_name = NULL;
 	file->pw_name = NULL;
+	file->st_mode = 0;
 	return (file);
 }
 

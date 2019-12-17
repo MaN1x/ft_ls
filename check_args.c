@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:24:53 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/04 19:56:32 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/17 21:57:06 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void		check_args(int argc, char **argv, t_list **path_list)
 
 	flags = 1;
 	arg_number = 0;
-	printf("===CHECK_ARGS===\n");
 	while (++arg_number < argc)
 	{
 		if (argv[arg_number][0] == '-' && flags)

@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 18:44:36 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/04 19:53:19 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/17 22:05:16 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	main(int argc, char **argv)
 
 	path_list = NULL;
 	check_args(argc, argv, &path_list);
+	/*
 	printf("============FLAGS================\n");
 	printf("print format = %d\n", g_print_format);
 	printf("scan type = %d\n", g_scan_type);
@@ -80,10 +81,12 @@ int	main(int argc, char **argv)
 	printf("sort type = %d\n", g_sort_type);
 	printf("sort mode = %d\n", g_sort_mode);
 	printf("========END FLAGS================\n");
+
 	print_path_list(path_list);
 	printf("=================\n");
+	*/
 	sort_path_list(&path_list);
-	print_path_list(path_list);
+//	print_path_list(path_list);
 	scan(path_list);
 	free_path_list(&path_list);
 	//print_path_list(path_list);

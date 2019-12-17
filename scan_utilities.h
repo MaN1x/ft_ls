@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scan.c                                             :+:      :+:    :+:   */
+/*   scan_utilities.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/25 21:48:49 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/17 22:24:16 by mjoss            ###   ########.fr       */
+/*   Created: 2019/12/17 22:15:41 by mjoss             #+#    #+#             */
+/*   Updated: 2019/12/17 22:18:10 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
-#include "scan_utilities.h"
+#ifndef SCAN_UTILITIES_H
+# define SCAN_UTILITIES_H
 
-void	scan(t_list *path_list)
-{
-	t_dir	*dir;
+# include "ft_ls.h"
 
-	dir = NULL;
-	while (path_list)
-	{
-		dir_add(&dir, path_list->content);
-		scan_directory(dir);
-		print_dir(dir);
-		free_dirlist(&dir);
-		dir = NULL;
-		path_list = path_list->next;
-	}
-}
+void	scan_file(t_dir **dir, char *path, char *file_name);
+void	scan_directory_utils(t_dir *dir, struct dirent	*direntp);
+void	scan_directory(t_dir *dir);
+
+#endif
