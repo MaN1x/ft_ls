@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:04:01 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/17 23:53:46 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/21 18:28:34 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	print_rights(mode_t st_mode)
 {
 	if (S_ISREG(st_mode))
 		printf("-");
+	if (S_ISLNK(st_mode))
+		printf("l");
 	if (S_ISDIR(st_mode))
 		printf("d");
 	if (st_mode & S_IRWXU & S_IRUSR)
@@ -90,7 +92,7 @@ void	print_dir(t_dir *dir)
 			while (tmp)
 			{
 				print_rights(tmp->st_mode);
-				printf("\t*links*\t");
+				printf("\t%d\t", tmp->st_nlink);
 				printf("*owner*\t");
 				printf("*group*\t");
 				printf("*size*\t");

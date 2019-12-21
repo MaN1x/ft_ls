@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scan_utilities.h                                   :+:      :+:    :+:   */
+/*   dir_getend.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/17 22:15:41 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/21 22:15:20 by mjoss            ###   ########.fr       */
+/*   Created: 2019/12/21 18:45:15 by mjoss             #+#    #+#             */
+/*   Updated: 2019/12/21 18:45:49 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAN_UTILITIES_H
-# define SCAN_UTILITIES_H
+#include "dir_utilities.h"
 
-# include "ft_ls.h"
-# include <dirent.h>
-
-void	scan_file(t_dir **dir, char *path, char *file_name);
-void	scan_directory_utils(t_dir *dir, struct dirent	*direntp);
-void	scan_directory(t_dir *dir);
-
-#endif
+t_dir	*dir_getend(t_dir *dir)
+{
+	while (dir->next)
+		dir = dir->next;
+	return (dir);
+}

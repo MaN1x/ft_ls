@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scan_utilities.h                                   :+:      :+:    :+:   */
+/*   free_dir_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/17 22:15:41 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/21 22:15:20 by mjoss            ###   ########.fr       */
+/*   Created: 2019/12/21 18:43:26 by mjoss             #+#    #+#             */
+/*   Updated: 2019/12/21 18:44:01 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAN_UTILITIES_H
-# define SCAN_UTILITIES_H
+#include "dir_utilities.h"
 
-# include "ft_ls.h"
-# include <dirent.h>
+void	free_dirlist(t_dir **path_list)
+{
+	t_dir	*list;
+	t_dir	*tmp;
 
-void	scan_file(t_dir **dir, char *path, char *file_name);
-void	scan_directory_utils(t_dir *dir, struct dirent	*direntp);
-void	scan_directory(t_dir *dir);
-
-#endif
+	list = *path_list;
+	while (list)
+	{
+		tmp = list->next;
+		free_files(&list->file);
+		free(list->dir_name);
+		free(list);
+		list = tmp;
+	}
+}

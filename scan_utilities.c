@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 22:12:15 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/17 23:49:39 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/21 18:28:50 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,15 @@ void				scan_file(t_dir **dir, char *path, char *file_name)
 {
 	struct stat	buf;
 	t_file_info	*file;
-	char 		*full_path;
+	char		*full_path;
 
 	full_path = get_full_path(path, file_name);
 	file = file_new();
-	stat(full_path, &buf);
+	lstat(full_path, &buf);
 	free(full_path);
 	file->file_name = ft_strdup(file_name);
 	file->st_mode = buf.st_mode;
+	file->st_nlink = buf.st_nlink;
 	file_add(&(*dir)->file, file);
 }
 

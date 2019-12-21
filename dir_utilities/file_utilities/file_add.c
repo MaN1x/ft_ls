@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scan_utilities.h                                   :+:      :+:    :+:   */
+/*   file_add.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/17 22:15:41 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/21 22:15:20 by mjoss            ###   ########.fr       */
+/*   Created: 2019/12/21 21:38:29 by mjoss             #+#    #+#             */
+/*   Updated: 2019/12/21 21:38:29 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAN_UTILITIES_H
-# define SCAN_UTILITIES_H
+#include "file_utilities.h"
 
-# include "ft_ls.h"
-# include <dirent.h>
-
-void	scan_file(t_dir **dir, char *path, char *file_name);
-void	scan_directory_utils(t_dir *dir, struct dirent	*direntp);
-void	scan_directory(t_dir *dir);
-
-#endif
+void			file_add(t_file_info **file, t_file_info *new_file)
+{
+	if (*file == NULL)
+		*file = new_file;
+	else
+		file_add(&((*file)->next), new_file);
+}
