@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 22:12:15 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/21 18:28:50 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/21 23:08:27 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void				scan_file(t_dir **dir, char *path, char *file_name)
 	file->file_name = ft_strdup(file_name);
 	file->st_mode = buf.st_mode;
 	file->st_nlink = buf.st_nlink;
+	file->pw_name = getpwuid(buf.st_uid)->pw_name;
+	file->gr_name = getgrgid(buf.st_gid)->gr_name;
 	file_add(&(*dir)->file, file);
 }
 

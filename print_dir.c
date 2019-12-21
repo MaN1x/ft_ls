@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:04:01 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/21 18:28:34 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/21 23:03:26 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ void	print_dir(t_dir *dir)
 			{
 				print_rights(tmp->st_mode);
 				printf("\t%d\t", tmp->st_nlink);
-				printf("*owner*\t");
-				printf("*group*\t");
+				printf("%s\t", tmp->pw_name);
+				printf("%s\t", tmp->gr_name);
 				printf("*size*\t");
 				printf("*date*\t");
 				printf("%s\n", tmp->file_name);
