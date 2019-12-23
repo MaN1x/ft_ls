@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 18:44:36 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/21 18:35:57 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/23 12:17:47 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ static void print_path_list(t_list *path_list)
 {
 	while (path_list)
 	{
-		printf("path = \"%s\"\n", path_list->content);
+		ft_putstr("path = \"");
+		ft_putstr(path_list->content);
+		ft_putstr("\"\n");
 		path_list = path_list->next;
 	}
 }
@@ -83,7 +85,7 @@ int	main(int argc, char **argv)
 	printf("========END FLAGS================\n");
 	*/
 	print_path_list(path_list);
-	printf("=================\n");
+	ft_putstr("=================\n");
 
 	sort_path_list(&path_list);
 	print_path_list(path_list);

@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:04:01 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/21 23:03:26 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/23 15:02:07 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,47 +21,115 @@ extern t_sort_mode		g_sort_mode;
 static void	print_rights(mode_t st_mode)
 {
 	if (S_ISREG(st_mode))
-		printf("-");
+		ft_putchar('-');
 	if (S_ISLNK(st_mode))
-		printf("l");
+		ft_putchar('l');
 	if (S_ISDIR(st_mode))
-		printf("d");
+		ft_putchar('d');
 	if (st_mode & S_IRWXU & S_IRUSR)
-		printf("r");
+		ft_putchar('r');
 	else
-		printf("-");
+		ft_putchar('-');
 	if (st_mode & S_IRWXU & S_IWUSR)
-		printf("w");
+		ft_putchar('w');
 	else
-		printf("-");
+		ft_putchar('-');
 	if (st_mode & S_IRWXU & S_IXUSR)
-		printf("x");
+		ft_putchar('x');
 	else
-		printf("-");
+		ft_putchar('-');
 	if (st_mode & S_IRWXG & S_IRGRP)
-		printf("r");
+		ft_putchar('r');
 	else
-		printf("-");
+		ft_putchar('-');
 	if (st_mode & S_IRWXG & S_IWGRP)
-		printf("w");
+		ft_putchar('w');
 	else
-		printf("-");
+		ft_putchar('-');
 	if (st_mode & S_IRWXG & S_IXGRP)
-		printf("x");
+		ft_putchar('x');
 	else
-		printf("-");
+		ft_putchar('-');
 	if (st_mode & S_IRWXO & S_IROTH)
-		printf("r");
+		ft_putchar('r');
 	else
-		printf("-");
+		ft_putchar('-');
 	if (st_mode & S_IRWXO & S_IWOTH)
-		printf("w");
+		ft_putchar('w');
 	else
-		printf("-");
+		ft_putchar('-');
 	if (st_mode & S_IRWXO & S_IXOTH)
-		printf("x");
+		ft_putchar('x');
 	else
-		printf("-");
+		ft_putchar('-');
+}
+
+int 		find_maxlen(t_file_info *tmp)
+{
+	t_file_info	*p;
+	size_t		n;
+
+	n = 0;
+	if (tmp)
+	{
+		p = tmp;
+		while (p)
+		{
+			if (n < ft_strlen(p->file_name))
+				n = ft_strlen(p->file_name);
+			p = p->next;
+		}
+	}
+	return (n);
+}
+
+t_file_info	*ft_take_elem(t_file_info *head, int n)
+{
+	int			i;
+	t_file_info	*p;
+
+	i = 0;
+	p = head;
+	while (i++ < n && p)
+	{
+		p = p->next;
+	}
+	if (!p)
+		return (NULL);
+	return (p);
+}
+
+void		print_list(t_file_info *tmp, int maxlen, int l)
+{									// maxlen - длина самого длинного слова
+	t_file_info		*p;			   // l - кол-во элементов для печати
+	struct winsize	w;
+	int				col;
+	int				i;
+	int 			kkk;
+	int				num;
+
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w); // оперделяю размеры окна терминала (данные в w)
+	col = w.ws_col / maxlen + (w.ws_col / maxlen == 0 ? 1 : 0); // расчитываю кол-во колонок для печати
+	l = l / col + (l % col == 0 ? 0 : 1); // кол-во строк
+	kkk = l; // нужно будет избавиться
+	num = 0;
+	while (l-- != 0)
+	{
+		i = 0;
+		while (i++ < col)
+		{
+			if ((p = ft_take_elem(tmp, num))) // возвращает элемента номера num
+			{
+				ft_putstr(p->file_name);
+				ft_putspace((int)(maxlen - ft_strlen(p->file_name))); //заполняет оставшееся место пробелами
+				num = num + kkk;
+			}
+			else
+				break ;
+		}
+		num = (num - (kkk * --i)) + 1;
+		ft_putchar('\n');
+	}
 }
 
 void	print_dir(t_dir *dir)
@@ -73,13 +141,14 @@ void	print_dir(t_dir *dir)
 		while (dir)
 		{
 			tmp = dir->file;
-			printf("%s:\n", dir->dir_name);
+			/*printf("%s:\n", dir->dir_name);
 			while (tmp)
 			{
 				printf("%s\n", tmp->file_name);
 				tmp = tmp->next;
 			}
-			printf("\n");
+			printf("\n");*/
+			print_list(tmp, (find_maxlen(tmp) + 4), file_size(tmp));
 			dir = dir->next;
 		}
 	}

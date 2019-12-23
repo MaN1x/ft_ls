@@ -31,7 +31,8 @@ t_file_info				*file_new(void);
 void					file_add(t_file_info **file, t_file_info *new_file);
 void					free_files(t_file_info **fileh);
 void					sort_file_list(t_file_info **file_list);
-size_t					file_list_size(t_file_info *lst);
 void					file_list_swap(t_file_info **head, t_file_info *lst1, t_file_info *lst2);
+size_t					file_list_size(t_file_info *lst);
+size_t					file_size(t_file_info *lst);
 
 #endif

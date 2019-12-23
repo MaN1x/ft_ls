@@ -64,6 +64,7 @@ void		check_args(int argc, char **argv, t_list **path_list)
 			flags = 0;
 			tmp_path = ft_lstnew(argv[arg_number], ft_strlen(argv[arg_number]) + 1);
 			ft_lstaddend(path_list, tmp_path);
+			// free tmp_path - нужно ли очищать переменную ?
 		}
 	}
 	if (ft_lstsize(*path_list) == 0)

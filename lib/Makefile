@@ -6,7 +6,7 @@
 #    By: mjoss <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/06 20:13:06 by mjoss             #+#    #+#              #
-#    Updated: 2019/12/04 17:38:09 by mjoss            ###   ########.fr        #
+#    Updated: 2019/12/23 14:17:18 by wanton           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,21 +74,22 @@ SRCS = ./ft_memset.c		\
 	   ./ft_lst_n.c			\
 	   ./ft_lstaddn.c		\
 	   ./ft_lstdelh.c       \
-	   ./ft_lstswap.c
+	   ./ft_lstswap.c       \
+	   ./ft_putspace.c
 
 OBJ = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME):
-	gcc -Wall -Wextra -Werror -c $(SRCS)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@gcc -Wall -Wextra -Werror -c $(SRCS)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean $(NAME)

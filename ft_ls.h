@@ -6,17 +6,19 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:20:43 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/21 22:42:12 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/23 14:23:27 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 # define FT_LS_H
 
-# include <stdio.h>
+# include <stdio.h> // здесь константа TIOCGWINSZ для ioctl
 # include <stdlib.h>
 # include "lib/libft.h"
 # include "dir_utilities/dir_utilities.h"
+# include <sys/ioctl.h> // для получения размера консоли
+# include <unistd.h>  // здесь константа STDOUT_FILENO для ioctl
 
 typedef enum			e_print_format
 {
