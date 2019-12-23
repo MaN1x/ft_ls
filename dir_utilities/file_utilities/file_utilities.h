@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 21:35:46 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/21 22:44:01 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/23 21:14:11 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct			s_file_info
 	nlink_t				st_nlink;
 	char				*pw_name;
 	char				*gr_name;
+	off_t				st_size;
+	time_t				time;
 	struct s_file_info	*next;
 }						t_file_info;
 

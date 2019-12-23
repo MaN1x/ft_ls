@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:04:01 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/23 15:02:07 by wanton           ###   ########.fr       */
+/*   Updated: 2019/12/23 21:16:05 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,8 +164,8 @@ void	print_dir(t_dir *dir)
 				printf("\t%d\t", tmp->st_nlink);
 				printf("%s\t", tmp->pw_name);
 				printf("%s\t", tmp->gr_name);
-				printf("*size*\t");
-				printf("*date*\t");
+				printf("%d\t", (unsigned int)tmp->st_size);
+				printf("%s\t", ctime(&tmp->time));
 				printf("%s\n", tmp->file_name);
 				tmp = tmp->next;
 			}

@@ -2,7 +2,7 @@ project(ft_ls C)
 
 set(CMAKE_C_STANDARD 99)
 
-set(SOURCE main.c check_args.c scan.c print_dir.c scan_utilities.c scan_utilities.h dir_utilities/sort_dir_list.c dir_utilities/free_dir_list.c dir_utilities/dir_new.c dir_utilities/dir_add.c dir_utilities/dir_getend.c dir_utilities/file_utilities/free_files.c dir_utilities/file_utilities/file_new.c dir_utilities/file_utilities/file_add.c dir_utilities/dir_list_size.c dir_utilities/dir_list_swap.c dir_utilities/file_utilities/sort_file_list.c dir_utilities/file_utilities/file_list_size.c dir_utilities/file_utilities/file_list_swap.c)
+set(SOURCE main.c check_args.c scan.c print_dir.c scan_utilities.c scan_utilities.h dir_utilities/sort_dir_list.c dir_utilities/free_dir_list.c dir_utilities/dir_new.c dir_utilities/dir_add.c dir_utilities/dir_getend.c dir_utilities/file_utilities/free_files.c dir_utilities/file_utilities/file_new.c dir_utilities/file_utilities/file_add.c dir_utilities/dir_list_size.c dir_utilities/dir_list_swap.c dir_utilities/file_utilities/sort_file_list.c dir_utilities/file_utilities/file_list_size.c dir_utilities/file_utilities/file_list_swap.c dir_utilities/file_utilities/file_size.c)
 
 set(SOURCE_LIB  ./lib/ft_atoi.c
                 ./lib/ft_bzero.c
@@ -67,7 +67,8 @@ set(SOURCE_LIB  ./lib/ft_atoi.c
                 ./lib/ft_putnbr_fd.c
                 ./lib/ft_putstr.c
                 ./lib/ft_putstr_fd.c
-                ./lib/ft_lstswap.c)
+                ./lib/ft_lstswap.c
+                ./lib/ft_putspace.c)
 
 add_library(libft STATIC ${SOURCE_LIB})
 
