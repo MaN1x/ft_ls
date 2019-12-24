@@ -6,7 +6,7 @@
 /*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 11:09:39 by wanton            #+#    #+#             */
-/*   Updated: 2019/12/24 12:46:59 by wanton           ###   ########.fr       */
+/*   Updated: 2019/12/24 14:13:44 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,38 @@ t_file_info	*ft_take_elem(t_file_info *head, int n)
 	if (!p)
 		return (NULL);
 	return (p);
+}
+
+void		print_total(t_file_info	*tmp)
+{
+	t_file_info		*p;
+	unsigned long	res;
+	int 			count;
+
+	res = 0;
+	count = 0;
+	p = tmp;
+	while (p)
+	{
+		res += (p->block);
+		p = p->next;
+		count++;
+	}
+	if (count != 0)
+	{
+		ft_putstr("total ");
+		ft_putnbr((int) res);
+		ft_putchar('\n');
+	}
+}
+
+void		print_head(t_dir *dir)
+{
+	if (dir && ((ft_strcmp(dir->dir_name, "."))))
+	{
+		ft_putstr(dir->dir_name);
+		ft_putstr(":\n");
+	}
 }
 
 void		print_time(t_file_info	*tmp)

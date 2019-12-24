@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 22:12:15 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/23 21:14:40 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/24 13:58:58 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void				scan_file(t_dir **dir, char *path, char *file_name)
 	file->gr_name = getgrgid(buf.st_gid)->gr_name;
 	file->st_size = buf.st_size;
 	file->time = buf.st_mtimespec.tv_sec;
+	file->block = buf.st_blocks; // total
 	file_add(&(*dir)->file, file);
 }
 
