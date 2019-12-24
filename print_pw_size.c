@@ -1,63 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_assist.c                                     :+:      :+:    :+:   */
+/*   print_pw_size.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/24 11:09:39 by wanton            #+#    #+#             */
-/*   Updated: 2019/12/24 12:46:59 by wanton           ###   ########.fr       */
+/*   Created: 2019/12/24 12:52:05 by wanton            #+#    #+#             */
+/*   Updated: 2019/12/24 12:52:05 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int			find_maxlen(t_file_info *tmp)
+int 		max_len_pw_nb(t_file_info *tmp)
 {
 	t_file_info	*p;
-	size_t		n;
+	int 		res;
+	int 		foo;
 
-	n = 0;
+	res = 0;
 	if (tmp)
 	{
 		p = tmp;
 		while (p)
 		{
-			if (n < ft_strlen(p->file_name))
-				n = ft_strlen(p->file_name);
+			foo = ft_lennumber(p->st_nlink);
+			if (res < foo)
+				res = foo;
 			p = p->next;
 		}
 	}
-	return (n);
+	return (res);
 }
 
-t_file_info	*ft_take_elem(t_file_info *head, int n)
+void		print_pw_size(t_file_info	*tmp, int m_size)
 {
-	int			i;
 	t_file_info	*p;
 
-	i = 0;
-	p = head;
-	while (i++ < n && p)
-	{
-		p = p->next;
-	}
-	if (!p)
-		return (NULL);
-	return (p);
-}
-
-void		print_time(t_file_info	*tmp)
-{
-	char 	*str;
-	int		i;
-
-	i = 4;
-	str = ctime(&(tmp->time));
-	while (i--)
-	{
-		str++;
-	}
-	write(1, str, 12);
-	ft_putchar(' ');
+	p = tmp;
+	ft_putspace(m_size - ft_lennumber(tmp->st_nlink));
+	ft_putnbr(tmp->st_nlink);
+	ft_putchar('\t');
 }

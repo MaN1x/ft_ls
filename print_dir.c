@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:04:01 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/24 11:26:28 by wanton           ###   ########.fr       */
+/*   Updated: 2019/12/24 13:08:31 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void	print_rights2(mode_t st_mode)
 		ft_putchar('x');
 	else
 		ft_putchar('-');
+	ft_putstr("  ");
 }
 
 static void	print_rights(mode_t st_mode)
@@ -101,6 +102,32 @@ void		print_list(t_file_info *tmp, int maxlen, int l, int col)
 	}
 }
 
+void		print_long_list(t_dir *dir)
+{
+	t_file_info	*tmp;
+	int 		m1;
+	int 		m2;
+
+	tmp = dir->file;
+	m1 = max_len_pw_nb(tmp);
+	m2 = max_len_st_nb(tmp);
+	printf("%s:\n", dir->dir_name);
+	while (tmp)
+	{
+		print_rights(tmp->st_mode);
+		print_pw_size(tmp, m1);
+		ft_putstr(tmp->pw_name);
+		ft_putchar('\t');
+		ft_putstr(tmp->gr_name);
+		ft_putstr("  ");
+		print_st_size(tmp, m2);
+		print_time(tmp);
+		ft_putstr(tmp->file_name);
+		ft_putchar('\n');
+		tmp = tmp->next;
+	}
+}
+
 void		print_dir(t_dir *dir)
 {
 	t_file_info	*tmp;
@@ -120,20 +147,9 @@ void		print_dir(t_dir *dir)
 	{
 		while (dir)
 		{
-			tmp = dir->file;
-			printf("%s:\n", dir->dir_name);
-			while (tmp)
-			{
-				print_rights(tmp->st_mode);
-				printf("\t%d\t", tmp->st_nlink);
-				printf("%s\t", tmp->pw_name);
-				printf("%s\t", tmp->gr_name);
-				printf("%d\t", (unsigned int)tmp->st_size);
-				printf("%s\t", ctime(&tmp->time));
-				printf("%s\n", tmp->file_name);
-				tmp = tmp->next;
-			}
-			printf("\n");
+			print_long_list(dir);
+			if (dir->next)
+				printf("\n");
 			dir = dir->next;
 		}
 	}

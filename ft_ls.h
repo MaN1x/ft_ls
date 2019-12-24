@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:20:43 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/24 10:36:05 by wanton           ###   ########.fr       */
+/*   Updated: 2019/12/24 12:55:35 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,12 @@ void					scan(t_list *path_list);
 */
 
 int						find_maxlen(t_file_info *tmp);
+int						max_len_pw_nb(t_file_info *tmp);
+int						max_len_st_nb(t_file_info *tmp);
 void					print_dir(t_dir *dir);
+void					print_time(t_file_info	*tmp);
+void					print_pw_size(t_file_info	*tmp, int m_size);
+void					print_st_size(t_file_info	*tmp, int m_size);
 t_file_info				*ft_take_elem(t_file_info *head, int n);
 
 #endif
