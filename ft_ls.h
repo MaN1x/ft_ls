@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:20:43 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/23 20:02:43 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/24 10:36:05 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <time.h>
 # include <stdio.h> // здесь константа TIOCGWINSZ для ioctl
-# include <stdlib.h>
+# include <stdlib.h> // test
 # include "lib/libft.h"
 # include "dir_utilities/dir_utilities.h"
 # include <sys/ioctl.h> // для получения размера консоли
