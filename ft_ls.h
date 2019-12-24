@@ -54,6 +54,13 @@ typedef enum			e_sort_mode
 
 void					check_args(int argc, char **argv, t_list **path_list);
 void					scan(t_list *path_list);
+
+/*
+**-----------------------------Print functions----------------------------------
+*/
+
+int						find_maxlen(t_file_info *tmp);
 void					print_dir(t_dir *dir);
+t_file_info				*ft_take_elem(t_file_info *head, int n);
 
 #endif
