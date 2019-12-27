@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:04:01 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/24 14:13:44 by wanton           ###   ########.fr       */
+/*   Updated: 2019/12/27 11:37:16 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ void		print_long_list(t_dir *dir)
 		print_st_size(tmp, m2);
 		print_time(tmp);
 		ft_putstr(tmp->file_name);
+		print_link_parent(get_full_path(dir->dir_name,
+				tmp->file_name), tmp->st_mode);
 		ft_putchar('\n');
 		tmp = tmp->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:20:43 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/24 14:02:51 by wanton           ###   ########.fr       */
+/*   Updated: 2019/12/27 11:37:16 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include "dir_utilities/dir_utilities.h"
 # include <sys/ioctl.h> // для получения размера консоли
 # include <unistd.h>  // здесь константа STDOUT_FILENO для ioctl
+# include <fcntl.h> // for open()
+
+# define BUF_SIZE 100
 
 typedef enum			e_print_format
 {
@@ -54,6 +57,7 @@ typedef enum			e_sort_mode
 
 void					check_args(int argc, char **argv, t_list **path_list);
 void					scan(t_list *path_list);
+char					*get_full_path(char *path, char *file_name);
 
 /*
 **-----------------------------Print functions----------------------------------
@@ -68,6 +72,7 @@ void					print_total(t_file_info	*tmp);
 void					print_time(t_file_info	*tmp);
 void					print_pw_size(t_file_info	*tmp, int m_size);
 void					print_st_size(t_file_info	*tmp, int m_size);
+void					print_link_parent(char *path, mode_t st_mode);
 t_file_info				*ft_take_elem(t_file_info *head, int n);
 
 #endif

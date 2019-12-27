@@ -16,7 +16,7 @@ extern t_print_format	g_print_format;
 extern t_scan_type		g_scan_type;
 extern t_scan_mode		g_scan_mode;
 
-static char				*get_full_path(char *path, char *file_name)
+char				*get_full_path(char *path, char *file_name)
 {
 	char *full_path;
 	char *tmp;
