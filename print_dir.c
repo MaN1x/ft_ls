@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:04:01 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/27 11:37:16 by wanton           ###   ########.fr       */
+/*   Updated: 2019/12/27 12:04:55 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ void		print_dir(t_dir *dir)
 		while (dir)
 		{
 			col = 0;
+			sort_file_list(&dir->file);
 			tmp = dir->file;
 			print_head(dir);
 			print_list(tmp, (find_maxlen(tmp) + 4), file_size(tmp), col);
@@ -153,6 +154,7 @@ void		print_dir(t_dir *dir)
 	{
 		while (dir)
 		{
+			sort_file_list(&dir->file);
 			print_long_list(dir);
 			if (dir->next)
 				printf("\n");
