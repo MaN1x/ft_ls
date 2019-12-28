@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_link_parent.c                                :+:      :+:    :+:   */
+/*   ft_llatoi.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/24 14:52:44 by wanton            #+#    #+#             */
-/*   Updated: 2019/12/24 15:02:00 by wanton           ###   ########.fr       */
+/*   Created: 2019/12/28 15:03:16 by wanton            #+#    #+#             */
+/*   Updated: 2019/12/28 15:03:16 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-
-void	print_link_parent(char *path, mode_t st_mode)
+long long	ft_llatoi(const char *str)
 {
-	char		buf[BUF_SIZE];
+	int					sign;
+	long long			tmp;
 
-	if (S_ISLNK(st_mode))
+	tmp = 0;
+	sign = 1;
+	while ((*str >= 9 && *str <= 13) || *str == ' ')
+		str++;
+	if (*str == '-')
 	{
-		ft_strclr(buf);
-		readlink(path, buf, BUF_SIZE);
-		ft_putstr(" -> ");
-		ft_putstr(buf);
+		sign = -1;
+		str++;
 	}
-	free(path);
+	else if (*str == '+')
+		str++;
+	while (*str >= '0' && *str <= '9')
+	{
+		tmp = tmp * 10 + *str - '0';
+		str++;
+	}
+	return (sign * tmp);
 }

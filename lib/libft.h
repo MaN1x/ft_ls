@@ -88,5 +88,6 @@ void				ft_lstdelh(t_list **lst, void(*del)(void*, size_t));
 void				ft_lstswap(t_list **head, t_list *lst1, t_list *lst2);
 void				ft_putspace(int n);
 int					ft_lennumber(int nb);
+long long			ft_llatoi(const char *str);
 
 #endif

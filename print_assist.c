@@ -6,7 +6,7 @@
 /*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 11:09:39 by wanton            #+#    #+#             */
-/*   Updated: 2019/12/24 14:13:44 by wanton           ###   ########.fr       */
+/*   Updated: 2019/12/28 15:08:20 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void		print_time(t_file_info	*tmp)
 
 	i = 4;
 	str = ctime(&(tmp->time));
+	//printf("%lld\n",tmp->full_date);
 	while (i--)
 	{
 		str++;

@@ -6,13 +6,17 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 22:34:46 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/21 22:34:46 by mjoss            ###   ########.fr       */
+/*   Updated: 2019/12/28 15:21:23 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_utilities.h"
+#include "../../ft_ls.h"
 
-void	sort_file_list(t_file_info **file_list)
+extern t_sort_type		g_sort_type;
+extern t_sort_mode		g_sort_mode;
+
+void	ascii_sort(t_file_info **file_list)
 {
 	size_t	i;
 	size_t	lst_size;
@@ -25,7 +29,8 @@ void	sort_file_list(t_file_info **file_list)
 	{
 		while (i < lst_size)
 		{
-			if (i + 1 != lst_size && ft_strcmp(current_file->file_name, current_file->next->file_name) > 0)
+			if (i + 1 != lst_size && ft_strcmp(current_file->file_name,
+					current_file->next->file_name) > 0)
 				file_list_swap(file_list, current_file, current_file->next);
 			else
 				current_file = current_file->next;
@@ -35,4 +40,38 @@ void	sort_file_list(t_file_info **file_list)
 		current_file = *file_list;
 		lst_size--;
 	}
+}
+
+
+void	time_sort(t_file_info **file_list)
+{
+	int		flag;
+	t_file_info	*current_file;
+
+	flag = 0;
+	current_file = *file_list;
+	while (flag == 0 && current_file)
+	{
+		flag = 1;
+		current_file = *file_list;
+		while (current_file->next)
+		{
+			if (current_file->full_date < current_file->next->full_date)
+			{
+				file_list_swap(file_list, current_file, current_file->next);
+				flag = 0;
+			}
+			else
+				current_file = current_file->next;
+		}
+	}
+}
+
+
+void	sort_file_list(t_file_info **file_list)
+{
+	if (g_sort_type == ASCII_SORT)
+		ascii_sort(file_list);
+	if (g_sort_type == TIMESTAMP_SORT)
+		time_sort(file_list);
 }

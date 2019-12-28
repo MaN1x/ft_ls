@@ -102,4 +102,4 @@ add_executable(ft_ls
         print_st_size.c
         scan.c
         scan_utilities.c
-        scan_utilities.h)
+        scan_utilities.h dir_utilities/file_utilities/full_date_file.c lib/ft_llatoi.c)
