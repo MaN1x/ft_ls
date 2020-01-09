@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 22:34:46 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/28 15:21:23 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/09 10:46:37 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,36 +42,37 @@ void	ascii_sort(t_file_info **file_list)
 	}
 }
 
-
 void	time_sort(t_file_info **file_list)
 {
-	int		flag;
+	int			flag;
 	t_file_info	*current_file;
 
-	flag = 0;
+	flag = 1;
 	current_file = *file_list;
-	while (flag == 0 && current_file)
+	while (flag == 1)
 	{
-		flag = 1;
-		current_file = *file_list;
+		flag = 0;
 		while (current_file->next)
 		{
-			if (current_file->full_date < current_file->next->full_date)
+			if (current_file->time < current_file->next->time)
 			{
 				file_list_swap(file_list, current_file, current_file->next);
-				flag = 0;
+				flag = 1;
 			}
 			else
 				current_file = current_file->next;
 		}
+		current_file = *file_list;
 	}
 }
 
-
 void	sort_file_list(t_file_info **file_list)
 {
-	if (g_sort_type == ASCII_SORT)
-		ascii_sort(file_list);
-	if (g_sort_type == TIMESTAMP_SORT)
-		time_sort(file_list);
+	if (*file_list)
+	{
+		if (g_sort_type == ASCII_SORT)
+			ascii_sort(file_list);
+		if (g_sort_type == TIMESTAMP_SORT)
+			time_sort(file_list);
+	}
 }

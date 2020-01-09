@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 21:35:46 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/28 14:51:54 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/09 14:03:35 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct			s_file_info
 	char				*gr_name;
 	off_t				st_size;
 	time_t				time;
-	unsigned long long	full_date;
 	unsigned long		block; // для total
 	struct s_file_info	*next;
 }						t_file_info;
@@ -38,6 +37,5 @@ void					sort_file_list(t_file_info **file_list);
 void					file_list_swap(t_file_info **head, t_file_info *lst1, t_file_info *lst2);
 size_t					file_list_size(t_file_info *lst);
 size_t					file_size(t_file_info *lst);
-unsigned long long		full_date(time_t time);
 
 #endif

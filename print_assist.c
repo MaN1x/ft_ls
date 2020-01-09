@@ -6,7 +6,7 @@
 /*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 11:09:39 by wanton            #+#    #+#             */
-/*   Updated: 2019/12/28 15:08:20 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/09 14:17:17 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,16 +81,22 @@ void		print_head(t_dir *dir)
 
 void		print_time(t_file_info	*tmp)
 {
-	char 	*str;
-	int		i;
+	struct tm	lt;
+	char 		*str;
+	int			i;
 
 	i = 4;
 	str = ctime(&(tmp->time));
-	//printf("%lld\n",tmp->full_date);
 	while (i--)
-	{
 		str++;
+	if (tmp->time < (time(NULL) - 15811200))
+	{
+		localtime_r(&tmp->time, &lt);
+		write(1, str, 6);
+		ft_putstr("  ");
+		ft_putnbr(lt.tm_year + 1900);
 	}
-	write(1, str, 12);
+	else
+		write(1, str, 12);
 	ft_putchar(' ');
 }

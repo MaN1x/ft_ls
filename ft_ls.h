@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:20:43 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/27 11:37:16 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/09 10:29:25 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,7 @@ void					print_pw_size(t_file_info	*tmp, int m_size);
 void					print_st_size(t_file_info	*tmp, int m_size);
 void					print_link_parent(char *path, mode_t st_mode);
 t_file_info				*ft_take_elem(t_file_info *head, int n);
+
+void					ft_putnbr_ll(unsigned long long n); // для тестов
 
 #endif

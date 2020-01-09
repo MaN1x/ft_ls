@@ -34,6 +34,7 @@ add_executable(ft_ls
         lib/ft_isprint.c
         lib/ft_itoa.c
         lib/ft_lennumber.c
+        lib/ft_llatoi.c
         lib/ft_lst_n.c
         lib/ft_lstadd.c
         lib/ft_lstaddend.c
@@ -102,4 +103,4 @@ add_executable(ft_ls
         print_st_size.c
         scan.c
         scan_utilities.c
-        scan_utilities.h dir_utilities/file_utilities/full_date_file.c lib/ft_llatoi.c)
+        scan_utilities.h)
