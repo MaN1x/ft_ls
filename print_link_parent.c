@@ -6,7 +6,7 @@
 /*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 14:52:44 by wanton            #+#    #+#             */
-/*   Updated: 2020/01/09 10:27:30 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/10 10:13:08 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,20 @@ void	print_link_parent(char *path, mode_t st_mode)
 		ft_putstr(buf);
 	}
 
+}
+
+void	get_file_acl(char *path)
+{
+	acl_t	tmp;
+	char	buf[101];
+
+	if (listxattr(path, buf, sizeof(buf), XATTR_NOFOLLOW) > 0)
+		ft_putchar('@');
+	else if ((tmp = acl_get_link_np(path, ACL_TYPE_EXTENDED)))
+	{
+		acl_free(tmp);
+		ft_putchar('+');
+	}
+	else
+		ft_putchar(' ');
 }

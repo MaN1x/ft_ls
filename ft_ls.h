@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:20:43 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/09 10:29:25 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/10 09:47:55 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <sys/ioctl.h> // для получения размера консоли
 # include <unistd.h>  // здесь константа STDOUT_FILENO для ioctl
 # include <fcntl.h> // for open()
+# include <sys/xattr.h>
+# include <sys/acl.h>
 
 # define BUF_SIZE 100
 
@@ -73,8 +75,7 @@ void					print_time(t_file_info	*tmp);
 void					print_pw_size(t_file_info	*tmp, int m_size);
 void					print_st_size(t_file_info	*tmp, int m_size);
 void					print_link_parent(char *path, mode_t st_mode);
+void					get_file_acl(char *path);
 t_file_info				*ft_take_elem(t_file_info *head, int n);
-
-void					ft_putnbr_ll(unsigned long long n); // для тестов
 
 #endif
