@@ -6,7 +6,7 @@
 /*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 14:52:44 by wanton            #+#    #+#             */
-/*   Updated: 2020/01/10 10:13:08 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/10 10:34:31 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	print_link_parent(char *path, mode_t st_mode)
 		ft_putstr(" -> ");
 		ft_putstr(buf);
 	}
+	if (path)
+		free(path);
 
 }
 
@@ -41,4 +43,6 @@ void	get_file_acl(char *path)
 	}
 	else
 		ft_putchar(' ');
+	if (path)
+		free(path);
 }

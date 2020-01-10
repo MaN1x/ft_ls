@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 22:34:46 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/09 10:46:37 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/10 11:11:50 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,24 @@ void	time_sort(t_file_info **file_list)
 	}
 }
 
+void	reverse_list(t_file_info **file_list)
+{
+	t_file_info	*curr;
+	t_file_info	*next;
+	t_file_info	*prev;
+
+	curr = *file_list;
+	prev = NULL;
+	while (curr)
+	{
+		next = curr->next;
+		curr->next = prev;
+		prev = curr;
+		curr = next;
+	}
+	*file_list = prev;
+}
+
 void	sort_file_list(t_file_info **file_list)
 {
 	if (*file_list)
@@ -74,5 +92,7 @@ void	sort_file_list(t_file_info **file_list)
 			ascii_sort(file_list);
 		if (g_sort_type == TIMESTAMP_SORT)
 			time_sort(file_list);
+		if (g_sort_mode == REVERSE_SORT)
+			reverse_list(file_list);
 	}
 }
