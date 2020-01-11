@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:04:01 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/10 09:46:09 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/11 21:28:44 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void		print_list(t_file_info *tmp, int maxlen, int l, int col)
 	}
 }
 
+// TODO: сделать отступы между директориями
 void		print_long_list(t_dir *dir)
 {
 	t_file_info	*tmp;
@@ -135,14 +136,13 @@ void		print_long_list(t_dir *dir)
 void		print_dir(t_dir *dir)
 {
 	t_file_info	*tmp;
-	int 		col; // переменная для print_list
+	int		col; // переменная для print_list
 
 	if (g_print_format == SHORT_FORMAT)
 	{
 		while (dir)
 		{
 			col = 0;
-			sort_file_list(&dir->file);
 			tmp = dir->file;
 			print_head(dir);
 			print_list(tmp, (find_maxlen(tmp) + 4), file_size(tmp), col);
@@ -155,7 +155,6 @@ void		print_dir(t_dir *dir)
 	{
 		while (dir)
 		{
-			sort_file_list(&dir->file);
 			print_long_list(dir);
 			if (dir->next)
 				printf("\n");

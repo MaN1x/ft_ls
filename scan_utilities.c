@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 22:12:15 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/09 14:03:35 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/11 20:43:15 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,27 @@ void				scan_file(t_dir **dir, char *path, char *file_name)
 	file_add(&(*dir)->file, file);
 }
 
-void				scan_directory_utils(t_dir *dir, struct dirent	*direntp)
+static void			recursive_scan(t_dir *dir)
 {
-	char			*full_path;
+	t_dir		*tmp_dir;
+	t_file_info	*file;
+	char		*full_path;
 
-	if (g_scan_type == RECURSIVE_SCAN && direntp->d_type == DT_DIR &&
-		ft_strcmp(direntp->d_name, ".") != 0 &&
-		ft_strcmp(direntp->d_name, "..") != 0)
+	file = dir->file;
+	while (file)
 	{
-		full_path = get_full_path(dir->dir_name, direntp->d_name);
-		dir_add(&dir, full_path);
-		free(full_path);
-		scan_directory((dir_getend(dir)));
+		if (S_ISDIR((*file).st_mode) &&
+			ft_strcmp(file->file_name, ".") != 0 &&
+			ft_strcmp(file->file_name, "..") != 0)
+		{
+			full_path = get_full_path(dir->dir_name, file->file_name);
+			tmp_dir = dir_new(full_path);
+			scan_directory(tmp_dir);
+			free_dirlist(&tmp_dir);
+			free(full_path);
+		}
+		file = file->next;
 	}
-	scan_file(&dir, (dir)->dir_name, direntp->d_name);
 }
 
 void				scan_directory(t_dir *dir)
@@ -80,9 +87,13 @@ void				scan_directory(t_dir *dir)
 	while ((direntp = readdir(dirp)))
 	{
 		if (g_scan_mode == IGNORE_DOT_NAMES && *direntp->d_name != '.')
-			scan_directory_utils(dir, direntp);
+			scan_file(&dir, (dir)->dir_name, direntp->d_name);
 		else if (g_scan_mode == SCAN_ALL)
-			scan_directory_utils(dir, direntp);
+			scan_file(&dir, (dir)->dir_name, direntp->d_name);
 	}
 	closedir(dirp);
+	sort_file_list(&dir->file);
+	print_dir(dir);
+	if (g_scan_type == RECURSIVE_SCAN)
+		recursive_scan(dir);
 }

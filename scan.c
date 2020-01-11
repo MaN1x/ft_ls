@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 21:48:49 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/09 10:27:30 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/11 21:16:31 by mjoss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,9 @@ void	scan(t_list *path_list)
 	{
 		dir_add(&dir, path_list->content);
 		scan_directory(dir);
-		if (g_sort_type == ASCII_SORT)
-			sort_file_list(&dir->file);
-		print_dir(dir);
 		free_dirlist(&dir);
-		dir = NULL;
+	//	dir = NULL;	//удали эту строчку и проверь на утечки. Почему так работает? P.S. Проверяй с несколькими аргументами
+	//				UPD Кажется я понял, С - это и правда 2 в 16 способов отстрелить себе конечности.
 		path_list = path_list->next;
 	}
 }

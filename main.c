@@ -18,6 +18,7 @@ t_scan_mode		g_scan_mode = IGNORE_DOT_NAMES;
 t_sort_type		g_sort_type = ASCII_SORT;
 t_sort_mode		g_sort_mode = NORMAL_SORT;
 
+/*
 static void print_path_list(t_list *path_list)
 {
 	while (path_list)
@@ -28,6 +29,7 @@ static void print_path_list(t_list *path_list)
 		path_list = path_list->next;
 	}
 }
+*/
 
 static void	free_path_list(t_list **path_list)
 {
@@ -84,11 +86,11 @@ int	main(int argc, char **argv)
 	printf("sort mode = %d\n", g_sort_mode);
 	printf("========END FLAGS================\n");
 	*/
-	print_path_list(path_list);
-	ft_putstr("=================\n");
+//	print_path_list(path_list);
+//	ft_putstr("=================\n");
 
 	sort_path_list(&path_list);
-	print_path_list(path_list);
+//	print_path_list(path_list);
 	scan(path_list);
 	free_path_list(&path_list);
 	//print_path_list(path_list);
