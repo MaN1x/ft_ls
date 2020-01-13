@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:20:43 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/10 09:47:55 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/13 11:06:48 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ typedef enum			e_sort_mode
 	NORMAL_SORT,
 	REVERSE_SORT
 }						t_sort_mode;
+
+typedef enum			e_line_break
+{
+	FIRST_ELEM,
+	NEXT_ELEM
+}						t_line_break;
 
 void					check_args(int argc, char **argv, t_list **path_list);
 void					scan(t_list *path_list);

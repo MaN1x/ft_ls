@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:04:01 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/11 21:28:44 by mjoss            ###   ########.fr       */
+/*   Updated: 2020/01/13 11:04:08 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ extern t_scan_type		g_scan_type;
 extern t_scan_mode		g_scan_mode;
 extern t_sort_type		g_sort_type;
 extern t_sort_mode		g_sort_mode;
+extern t_line_break		g_line_break;
+
 
 static void	print_rights2(mode_t st_mode)
 {
@@ -142,12 +144,13 @@ void		print_dir(t_dir *dir)
 	{
 		while (dir)
 		{
+			if (g_line_break == NEXT_ELEM)
+				ft_putchar('\n');
 			col = 0;
+			g_line_break = NEXT_ELEM;
 			tmp = dir->file;
 			print_head(dir);
 			print_list(tmp, (find_maxlen(tmp) + 4), file_size(tmp), col);
-			if (dir->next)
-				ft_putchar('\n');
 			dir = dir->next;
 		}
 	}
@@ -155,9 +158,10 @@ void		print_dir(t_dir *dir)
 	{
 		while (dir)
 		{
+			if (g_line_break == NEXT_ELEM)
+				ft_putchar('\n');
+			g_line_break = NEXT_ELEM;
 			print_long_list(dir);
-			if (dir->next)
-				printf("\n");
 			dir = dir->next;
 		}
 	}

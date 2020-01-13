@@ -17,6 +17,7 @@ t_scan_type		g_scan_type = SCAN_CURRENT_DIRECTORY;
 t_scan_mode		g_scan_mode = IGNORE_DOT_NAMES;
 t_sort_type		g_sort_type = ASCII_SORT;
 t_sort_mode		g_sort_mode = NORMAL_SORT;
+t_line_break	g_line_break = FIRST_ELEM;
 
 /*
 static void print_path_list(t_list *path_list)
