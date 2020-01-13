@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:20:43 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/13 11:06:48 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/13 13:27:17 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,15 @@ typedef enum			e_line_break
 	NEXT_ELEM
 }						t_line_break;
 
-void					check_args(int argc, char **argv, t_list **path_list);
-void					scan(t_list *path_list);
+typedef enum			e_total_mode
+{
+	YES,
+	NO
+}						t_total_mode;
+
+void					check_args(int argc, char **argv,
+		t_file_info **path_list);
+void					scan(t_file_info *path_list);
 char					*get_full_path(char *path, char *file_name);
 
 /*
@@ -82,6 +89,8 @@ void					print_pw_size(t_file_info	*tmp, int m_size);
 void					print_st_size(t_file_info	*tmp, int m_size);
 void					print_link_parent(char *path, mode_t st_mode);
 void					get_file_acl(char *path);
+void					print_list(t_file_info *tmp, int maxlen, int l, int col);
+void					print_long_list(t_dir *dir);
 t_file_info				*ft_take_elem(t_file_info *head, int n);
 
 #endif

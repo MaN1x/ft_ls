@@ -18,6 +18,7 @@ t_scan_mode		g_scan_mode = IGNORE_DOT_NAMES;
 t_sort_type		g_sort_type = ASCII_SORT;
 t_sort_mode		g_sort_mode = NORMAL_SORT;
 t_line_break	g_line_break = FIRST_ELEM;
+ t_total_mode	g_total_mode = NO;
 
 /*
 static void print_path_list(t_list *path_list)
@@ -32,36 +33,37 @@ static void print_path_list(t_list *path_list)
 }
 */
 
-static void	free_path_list(t_list **path_list)
+static void	free_path_list(t_file_info **path_list)
 {
-	t_list	*list;
-	t_list	*tmp;
+	t_file_info	*list;
+	t_file_info	*tmp;
 
 	list = *path_list;
 	while (list)
 	{
 		tmp = list->next;
-		free(list->content);
+		free(list->file_name);
 		free(list);
 		list = tmp;
 	}
 }
 
-static void	sort_path_list(t_list **path_list)
+static void	sort_path_list(t_file_info **path_list)
 {
-	size_t	i;
-	size_t	lst_size;
-	t_list	*current_list;
+	size_t		i;
+	size_t		lst_size;
+	t_file_info	*current_list;
 
 	i = 0;
-	lst_size = ft_lstsize(*path_list);
+	lst_size = file_list_size(*path_list);
 	current_list = *path_list;
 	while (lst_size)
 	{
 		while (i < lst_size)
 		{
-			if (i + 1 != lst_size && ft_strcmp(current_list->content, current_list->next->content) > 0)
-				ft_lstswap(path_list, current_list, current_list->next);
+			if (i + 1 != lst_size && ft_strcmp(current_list->file_name,
+					current_list->next->file_name) > 0)
+				file_list_swap(path_list, current_list, current_list->next);
 			else
 				current_list = current_list->next;
 			i++;
@@ -74,12 +76,12 @@ static void	sort_path_list(t_list **path_list)
 
 int	main(int argc, char **argv)
 {
-	t_list	*path_list;
+	t_file_info		*path_list;
 
 	path_list = NULL;
 	check_args(argc, argv, &path_list);
 	/*
-	printf("============FLAGS================\n");
+	printf("============FLAGS================\n");x§
 	printf("print format = %d\n", g_print_format);
 	printf("scan type = %d\n", g_scan_type);
 	printf("scan mode = %d\n", g_scan_mode);

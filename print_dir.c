@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:04:01 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/13 11:04:08 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/13 13:27:17 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void		print_list(t_file_info *tmp, int maxlen, int l, int col)
 	}
 }
 
-// TODO: сделать отступы между директориями
 void		print_long_list(t_dir *dir)
 {
 	t_file_info	*tmp;

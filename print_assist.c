@@ -12,6 +12,8 @@
 
 #include "ft_ls.h"
 
+extern t_total_mode		g_total_mode;
+
 int			find_maxlen(t_file_info *tmp)
 {
 	t_file_info	*p;
@@ -53,6 +55,8 @@ void		print_total(t_file_info	*tmp)
 	unsigned long	res;
 	int 			count;
 
+	if (g_total_mode == NO)
+		return ;
 	res = 0;
 	count = 0;
 	p = tmp;
