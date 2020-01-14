@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:20:43 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/14 14:13:35 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/14 14:43:20 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,12 @@ typedef enum			e_first_head
 	FIRST,
 	FOLLOW
 }						t_first_head;
+
+typedef enum			e_file_perm
+{
+	ALLOW,
+	DISALLOW
+}						t_file_perm;
 
 void					check_args(int argc, char **argv,
 		t_file_info **path_list);

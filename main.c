@@ -6,7 +6,7 @@
 /*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 13:11:26 by wanton            #+#    #+#             */
-/*   Updated: 2020/01/14 14:17:05 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/14 14:25:46 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_sort_mode		g_sort_mode = NORMAL_SORT;
 t_line_break	g_line_break = FIRST_ELEM;
 t_total_mode	g_total_mode = NO;
 t_first_head	g_first_head = FIRST;
+t_file_perm		g_file_perm = ALLOW;
 
 static void	free_path_list(t_file_info **path_list)
 {

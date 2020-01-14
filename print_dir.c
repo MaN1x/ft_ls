@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:04:01 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/13 13:27:17 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/14 15:04:15 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ extern t_scan_mode		g_scan_mode;
 extern t_sort_type		g_sort_type;
 extern t_sort_mode		g_sort_mode;
 extern t_line_break		g_line_break;
+extern t_file_perm		g_file_perm;
 
 
 static void	print_rights2(mode_t st_mode)
@@ -137,6 +138,7 @@ void		print_long_list(t_dir *dir)
 void		print_dir(t_dir *dir)
 {
 	t_file_info	*tmp;
+	char 		*name;
 	int		col; // переменная для print_list
 
 	if (g_print_format == SHORT_FORMAT)
@@ -150,6 +152,15 @@ void		print_dir(t_dir *dir)
 			tmp = dir->file;
 			print_head(dir);
 			print_list(tmp, (find_maxlen(tmp) + 4), file_size(tmp), col);
+			if (g_file_perm == DISALLOW)   // работает норм
+			{                             // нужно вынести в отдельную функцию и
+				ft_putstr_fd("ls: ", 2);   // добавить в long print
+				if (!(name = ft_strrchr(dir->dir_name, '/')))
+					name = dir->dir_name;
+				ft_putstr_fd(++name, 2);
+				ft_putstr_fd(": Permission denied\n", 2);
+				g_file_perm = ALLOW;
+			}
 			dir = dir->next;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 22:12:15 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/14 13:40:28 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/14 13:42:26 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 extern t_print_format	g_print_format;
 extern t_scan_type		g_scan_type;
 extern t_scan_mode		g_scan_mode;
+extern t_file_perm		g_file_perm;
 
 char				*get_full_path(char *path, char *file_name)
 {
@@ -83,16 +84,20 @@ void				scan_directory(t_dir *dir)
 	DIR				*dirp;
 	struct dirent	*direntp;
 
-	dirp = opendir(dir->dir_name);
-	while ((direntp = readdir(dirp)))
+	if (!(dirp = opendir(dir->dir_name)))
+		g_file_perm = DISALLOW;
+	else
 	{
-		if (g_scan_mode == IGNORE_DOT_NAMES && *direntp->d_name != '.')
-			scan_file(&dir, (dir)->dir_name, direntp->d_name);
-		else if (g_scan_mode == SCAN_ALL)
-			scan_file(&dir, (dir)->dir_name, direntp->d_name);
+		while ((direntp = readdir(dirp)))
+		{
+			if (g_scan_mode == IGNORE_DOT_NAMES && *direntp->d_name != '.')
+				scan_file(&dir, (dir)->dir_name, direntp->d_name);
+			else if (g_scan_mode == SCAN_ALL)
+				scan_file(&dir, (dir)->dir_name, direntp->d_name);
+		}
+		closedir(dirp);
+		sort_file_list(&dir->file);
 	}
-	closedir(dirp);
-	sort_file_list(&dir->file);
 	print_dir(dir);
 	if (g_scan_type == RECURSIVE_SCAN)
 		recursive_scan(dir);
