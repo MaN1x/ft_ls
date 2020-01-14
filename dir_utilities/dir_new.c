@@ -17,7 +17,7 @@ t_dir	*dir_new(char *dir_name)
 	t_dir	*dir;
 
 	if (!(dir = (t_dir*)malloc(sizeof(t_dir))))
-		exit(0);
+		return (NULL);
 	dir->file = NULL;
 	dir->dir_name = ft_strdup(dir_name);
 	dir->next = NULL;

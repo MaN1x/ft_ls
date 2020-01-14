@@ -13,6 +13,7 @@
 #include "ft_ls.h"
 
 extern t_total_mode		g_total_mode;
+extern t_first_head		g_first_head;
 
 int			find_maxlen(t_file_info *tmp)
 {
@@ -76,11 +77,12 @@ void		print_total(t_file_info	*tmp)
 
 void		print_head(t_dir *dir)
 {
-	if (dir && ((ft_strcmp(dir->dir_name, "."))))
+	if (g_first_head == FOLLOW)
 	{
 		ft_putstr(dir->dir_name);
 		ft_putstr(":\n");
 	}
+	g_first_head = FOLLOW;
 }
 
 void		print_time(t_file_info	*tmp)

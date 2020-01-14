@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:20:43 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/13 13:27:17 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/14 14:13:35 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <fcntl.h> // for open()
 # include <sys/xattr.h>
 # include <sys/acl.h>
+# include <errno.h>
 
 # define BUF_SIZE 100
 
@@ -69,9 +70,15 @@ typedef enum			e_total_mode
 	NO
 }						t_total_mode;
 
+typedef enum			e_first_head
+{
+	FIRST,
+	FOLLOW
+}						t_first_head;
+
 void					check_args(int argc, char **argv,
 		t_file_info **path_list);
-void					scan(t_file_info *path_list);
+int						scan(t_file_info **path_list);
 char					*get_full_path(char *path, char *file_name);
 
 /*
@@ -81,6 +88,8 @@ char					*get_full_path(char *path, char *file_name);
 int						find_maxlen(t_file_info *tmp);
 int						max_len_pw_nb(t_file_info *tmp);
 int						max_len_st_nb(t_file_info *tmp);
+int						print_file_list(t_file_info *file_list);
+int						use_lstat(char *name, char *path, struct stat *buf);
 void					print_dir(t_dir *dir);
 void					print_head(t_dir *dir);
 void					print_total(t_file_info	*tmp);

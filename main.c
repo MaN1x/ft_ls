@@ -1,12 +1,12 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/17 18:44:36 by mjoss             #+#    #+#             */
-/*   Updated: 2019/12/23 20:08:10 by mjoss            ###   ########.fr       */
+/*   Created: 2020/01/14 13:11:26 by wanton            #+#    #+#             */
+/*   Updated: 2020/01/14 14:17:05 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,8 @@ t_scan_mode		g_scan_mode = IGNORE_DOT_NAMES;
 t_sort_type		g_sort_type = ASCII_SORT;
 t_sort_mode		g_sort_mode = NORMAL_SORT;
 t_line_break	g_line_break = FIRST_ELEM;
- t_total_mode	g_total_mode = NO;
-
-/*
-static void print_path_list(t_list *path_list)
-{
-	while (path_list)
-	{
-		ft_putstr("path = \"");
-		ft_putstr(path_list->content);
-		ft_putstr("\"\n");
-		path_list = path_list->next;
-	}
-}
-*/
+t_total_mode	g_total_mode = NO;
+t_first_head	g_first_head = FIRST;
 
 static void	free_path_list(t_file_info **path_list)
 {
@@ -42,7 +30,8 @@ static void	free_path_list(t_file_info **path_list)
 	while (list)
 	{
 		tmp = list->next;
-		free(list->file_name);
+		if (list->file_name)
+			free(list->file_name);
 		free(list);
 		list = tmp;
 	}
@@ -74,28 +63,14 @@ static void	sort_path_list(t_file_info **path_list)
 	}
 }
 
-int	main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_file_info		*path_list;
 
 	path_list = NULL;
 	check_args(argc, argv, &path_list);
-	/*
-	printf("============FLAGS================\n");x§
-	printf("print format = %d\n", g_print_format);
-	printf("scan type = %d\n", g_scan_type);
-	printf("scan mode = %d\n", g_scan_mode);
-	printf("sort type = %d\n", g_sort_type);
-	printf("sort mode = %d\n", g_sort_mode);
-	printf("========END FLAGS================\n");
-	*/
-//	print_path_list(path_list);
-//	ft_putstr("=================\n");
-
 	sort_path_list(&path_list);
-//	print_path_list(path_list);
-	scan(path_list);
+	scan(&path_list);
 	free_path_list(&path_list);
-	//print_path_list(path_list);
-	return 0;
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:24:53 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/13 12:06:00 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/14 11:16:02 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void		check_args(int argc, char **argv, t_file_info **path_list)
 	{
 		if (argv[arg_number][0] == '-' && flags)
 			check_flag(argv[arg_number]);
-		else if (argv[arg_number][0] != '-')
+		else //if (argv[arg_number][0] != '-')
 		{
 			flags = 0;
 			tmp_path = file_new();
