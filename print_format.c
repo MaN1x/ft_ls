@@ -29,7 +29,7 @@ void	short_format(t_dir *dir)
 		g_line_break = NEXT_ELEM;
 		tmp = dir->file;
 		print_head(dir);
-		print_list(tmp, (find_maxlen(tmp) + 4), file_size(tmp), col);
+		print_list(tmp, (find_maxlen(tmp) + 1), file_size(tmp), col);
 		if (g_file_perm == DISALLOW)
 		{
 			ft_putstr_fd("ls: ", 2);
