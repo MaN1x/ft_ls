@@ -25,7 +25,8 @@ void	sort_dir_list(t_dir **dir_list)
 	{
 		while (i < lst_size)
 		{
-			if (i + 1 != lst_size && ft_strcmp(current_dir->dir_name, current_dir->next->dir_name) > 0)
+			if (i + 1 != lst_size && ft_strcmp(current_dir->dir_name,
+					current_dir->next->dir_name) > 0)
 				dir_list_swap(dir_list, current_dir, current_dir->next);
 			else
 				current_dir = current_dir->next;

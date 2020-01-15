@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:24:53 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/14 11:16:02 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/15 14:32:59 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ extern	t_sort_type		g_sort_type;
 
 static void	err_message(const char *argv)
 {
-	printf("ls: illegal option -- %c\nusage: ls [-Ralrt] [file ...]", *argv);
+	printf("ls: illegal option -- %c\nusage: ls [-Ralrt] [file ...]\n", *argv);
 }
 
 static void	check_flag(char *argv)
@@ -59,13 +59,12 @@ void		check_args(int argc, char **argv, t_file_info **path_list)
 	{
 		if (argv[arg_number][0] == '-' && flags)
 			check_flag(argv[arg_number]);
-		else //if (argv[arg_number][0] != '-')
+		else
 		{
 			flags = 0;
 			tmp_path = file_new();
 			tmp_path->file_name = ft_strdup(argv[arg_number]);
 			file_add(path_list, tmp_path);
-			// free tmp_path - нужно ли очищать переменную ?
 		}
 	}
 	if (file_list_size(*path_list) == 0)

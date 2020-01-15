@@ -18,8 +18,8 @@ extern t_sort_mode		g_sort_mode;
 
 void	ascii_sort(t_file_info **file_list)
 {
-	size_t	i;
-	size_t	lst_size;
+	size_t		i;
+	size_t		lst_size;
 	t_file_info	*current_file;
 
 	i = 0;

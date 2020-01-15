@@ -6,7 +6,7 @@
 /*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 11:50:17 by wanton            #+#    #+#             */
-/*   Updated: 2020/01/14 13:44:40 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/15 15:10:31 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 extern t_print_format	g_print_format;
 extern t_first_head		g_first_head;
+extern t_line_break		g_line_break;
 
 int		print_file_list(t_file_info *file_list)
 {
@@ -33,10 +34,27 @@ int		print_file_list(t_file_info *file_list)
 		else if (g_print_format == LONG_FORMAT)
 			print_long_list(dir);
 		g_first_head = FOLLOW;
-		ft_putchar('\n');
+		g_line_break = NEXT_ELEM;
 		free(dir);
 	}
 	return (1);
+}
+
+void	add_param(t_file_info *p, struct stat buf)
+{
+	p->st_mode = buf.st_mode;
+	p->st_nlink = buf.st_nlink;
+	p->pw_name = getpwuid(buf.st_uid)->pw_name;
+	p->gr_name = getgrgid(buf.st_gid)->gr_name;
+	p->st_size = buf.st_size;
+	p->time = buf.st_mtimespec.tv_sec;
+	p->block = buf.st_blocks;
+}
+
+void	start_error_message(char *name)
+{
+	ft_putstr_fd("ls: ", 2);
+	ft_putstr_fd(name, 2);
 }
 
 int		use_lstat(char *name, char *path, struct stat *buf)
@@ -46,24 +64,23 @@ int		use_lstat(char *name, char *path, struct stat *buf)
 	{
 		if (errno == ENAMETOOLONG)
 		{
-			ft_putstr_fd("ls: ", 2);
-			ft_putstr_fd(name, 2);
+			start_error_message(name);
 			ft_putstr_fd(": File name too long\n", 2);
 		}
 		else if (errno == ENOENT)
 		{
-			ft_putstr_fd("ls: ", 2);
-			ft_putstr_fd(name, 2);
+			start_error_message(name);
 			ft_putstr_fd(": No such file or directory\n", 2);
 		}
 		else if (errno == ENOMEM)
 		{
-			ft_putstr_fd("ls: ", 2);
-			ft_putstr_fd(name, 2);
+			start_error_message(name);
 			ft_putstr_fd(": Permission denied\n", 2);
 		}
 	}
 	else
+	{
 		return (1);
+	}
 	return (0);
 }

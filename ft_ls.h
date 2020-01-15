@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:20:43 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/14 14:43:20 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/15 14:56:15 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 # define FT_LS_H
 
 # include <time.h>
-# include <stdio.h> // здесь константа TIOCGWINSZ для ioctl
-# include <stdlib.h> // test
+# include <stdio.h>
+# include <stdlib.h>
 # include "lib/libft.h"
 # include "dir_utilities/dir_utilities.h"
-# include <sys/ioctl.h> // для получения размера консоли
-# include <unistd.h>  // здесь константа STDOUT_FILENO для ioctl
-# include <fcntl.h> // for open()
+# include <sys/ioctl.h>
+# include <unistd.h>
+# include <fcntl.h>
 # include <sys/xattr.h>
 # include <sys/acl.h>
 # include <errno.h>
+# include <dirent.h>
+# include <pwd.h>
+# include <grp.h>
 
 # define BUF_SIZE 100
 
@@ -104,8 +107,17 @@ void					print_pw_size(t_file_info	*tmp, int m_size);
 void					print_st_size(t_file_info	*tmp, int m_size);
 void					print_link_parent(char *path, mode_t st_mode);
 void					get_file_acl(char *path);
-void					print_list(t_file_info *tmp, int maxlen, int l, int col);
+void					print_list(t_file_info *tmp, int maxlen, int l,
+		int col);
 void					print_long_list(t_dir *dir);
+void					add_param(t_file_info *p, struct stat buf);
 t_file_info				*ft_take_elem(t_file_info *head, int n);
+
+/*
+**------------------------------Scan functions----------------------------------
+*/
+
+void					scan_file(t_dir **dir, char *path, char *file_name);
+void					scan_directory(t_dir *dir);
 
 #endif

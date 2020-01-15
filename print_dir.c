@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:04:01 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/14 15:04:15 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/15 15:15:02 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ extern t_sort_type		g_sort_type;
 extern t_sort_mode		g_sort_mode;
 extern t_line_break		g_line_break;
 extern t_file_perm		g_file_perm;
-
 
 static void	print_rights2(mode_t st_mode)
 {
@@ -73,27 +72,27 @@ static void	print_rights(mode_t st_mode)
 }
 
 void		print_list(t_file_info *tmp, int maxlen, int l, int col)
-{									// maxlen - длина самого длинного слова
-	t_file_info		*p;			   // l - кол-во элементов для печати
+{
+	t_file_info		*p;
 	struct winsize	w;
 	int				i;
 	int				kkk;
 	int				num;
 
-	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w); // оперделяю размеры окна терминала (данные в w)
-	col = w.ws_col / maxlen + (w.ws_col / maxlen == 0 ? 1 : 0); // расчитываю кол-во колонок для печати
-	l = l / col + (l % col == 0 ? 0 : 1); // кол-во строк
-	kkk = l; // нужно будет избавиться
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	col = w.ws_col / maxlen + (w.ws_col / maxlen == 0 ? 1 : 0);
+	l = l / col + (l % col == 0 ? 0 : 1);
+	kkk = l;
 	num = 0;
 	while (l-- != 0)
 	{
 		i = 0;
 		while (i++ < col)
 		{
-			if ((p = ft_take_elem(tmp, num))) // возвращает элемента номера num
+			if ((p = ft_take_elem(tmp, num)))
 			{
 				ft_putstr(p->file_name);
-				ft_putspace((int)(maxlen - ft_strlen(p->file_name))); //заполняет оставшееся место пробелами
+				ft_putspace((int)(maxlen - ft_strlen(p->file_name)));
 				num = num + kkk;
 			}
 			else
@@ -107,12 +106,8 @@ void		print_list(t_file_info *tmp, int maxlen, int l, int col)
 void		print_long_list(t_dir *dir)
 {
 	t_file_info	*tmp;
-	int 		m1;
-	int 		m2;
 
 	tmp = dir->file;
-	m1 = max_len_pw_nb(tmp);
-	m2 = max_len_st_nb(tmp);
 	print_head(dir);
 	print_total(tmp);
 	while (tmp)
@@ -120,12 +115,12 @@ void		print_long_list(t_dir *dir)
 		print_rights(tmp->st_mode);
 		get_file_acl(get_full_path(dir->dir_name, tmp->file_name));
 		ft_putchar(' ');
-		print_pw_size(tmp, m1);
+		print_pw_size(tmp, max_len_pw_nb(tmp));
 		ft_putstr(tmp->pw_name);
 		ft_putchar('\t');
 		ft_putstr(tmp->gr_name);
 		ft_putstr("  ");
-		print_st_size(tmp, m2);
+		print_st_size(tmp, max_len_st_nb(tmp));
 		print_time(tmp);
 		ft_putstr(tmp->file_name);
 		print_link_parent(get_full_path(dir->dir_name,
@@ -138,8 +133,8 @@ void		print_long_list(t_dir *dir)
 void		print_dir(t_dir *dir)
 {
 	t_file_info	*tmp;
-	char 		*name;
-	int		col; // переменная для print_list
+	char		*name;
+	int			col;
 
 	if (g_print_format == SHORT_FORMAT)
 	{
@@ -152,9 +147,9 @@ void		print_dir(t_dir *dir)
 			tmp = dir->file;
 			print_head(dir);
 			print_list(tmp, (find_maxlen(tmp) + 4), file_size(tmp), col);
-			if (g_file_perm == DISALLOW)   // работает норм
-			{                             // нужно вынести в отдельную функцию и
-				ft_putstr_fd("ls: ", 2);   // добавить в long print
+			if (g_file_perm == DISALLOW)
+			{
+				ft_putstr_fd("ls: ", 2);
 				if (!(name = ft_strrchr(dir->dir_name, '/')))
 					name = dir->dir_name;
 				ft_putstr_fd(++name, 2);

@@ -12,11 +12,11 @@
 
 #include "ft_ls.h"
 
-int 		max_len_pw_nb(t_file_info *tmp)
+int			max_len_pw_nb(t_file_info *tmp)
 {
 	t_file_info	*p;
-	int 		res;
-	int 		foo;
+	int			res;
+	int			foo;
 
 	res = 0;
 	if (tmp)
@@ -33,7 +33,7 @@ int 		max_len_pw_nb(t_file_info *tmp)
 	return (res);
 }
 
-void		print_pw_size(t_file_info	*tmp, int m_size)
+void		print_pw_size(t_file_info *tmp, int m_size)
 {
 	t_file_info	*p;
 

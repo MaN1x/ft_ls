@@ -6,7 +6,7 @@
 /*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 11:09:39 by wanton            #+#    #+#             */
-/*   Updated: 2020/01/09 14:17:17 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/15 14:48:04 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ t_file_info	*ft_take_elem(t_file_info *head, int n)
 	return (p);
 }
 
-void		print_total(t_file_info	*tmp)
+void		print_total(t_file_info *tmp)
 {
 	t_file_info		*p;
 	unsigned long	res;
-	int 			count;
+	int				count;
 
 	if (g_total_mode == NO)
 		return ;
@@ -70,7 +70,7 @@ void		print_total(t_file_info	*tmp)
 	if (count != 0)
 	{
 		ft_putstr("total ");
-		ft_putnbr((int) res);
+		ft_putnbr((int)res);
 		ft_putchar('\n');
 	}
 }
@@ -85,10 +85,10 @@ void		print_head(t_dir *dir)
 	g_first_head = FOLLOW;
 }
 
-void		print_time(t_file_info	*tmp)
+void		print_time(t_file_info *tmp)
 {
 	struct tm	lt;
-	char 		*str;
+	char		*str;
 	int			i;
 
 	i = 4;

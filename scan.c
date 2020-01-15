@@ -6,11 +6,11 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 21:48:49 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/14 14:01:36 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/15 14:56:15 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scan_utilities.h"
+#include "ft_ls.h"
 
 extern t_total_mode		g_total_mode;
 
@@ -88,13 +88,7 @@ int		check_path(t_file_info *path_list)
 			continue;
 		}
 		free(full_path);
-		p->st_mode = buf.st_mode;
-		p->st_nlink = buf.st_nlink;
-		p->pw_name = getpwuid(buf.st_uid)->pw_name;
-		p->gr_name = getgrgid(buf.st_gid)->gr_name;
-		p->st_size = buf.st_size;
-		p->time = buf.st_mtimespec.tv_sec;
-		p->block = buf.st_blocks;
+		add_param(p, buf);
 		p = p->next;
 	}
 	return (1);

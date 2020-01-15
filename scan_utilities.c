@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scan_utilities.h"
+#include "ft_ls.h"
 
 extern t_print_format	g_print_format;
 extern t_scan_type		g_scan_type;
@@ -52,7 +52,7 @@ void				scan_file(t_dir **dir, char *path, char *file_name)
 	file->gr_name = getgrgid(buf.st_gid)->gr_name;
 	file->st_size = buf.st_size;
 	file->time = buf.st_mtimespec.tv_sec;
-	file->block = buf.st_blocks; // total
+	file->block = buf.st_blocks;
 	file_add(&(*dir)->file, file);
 }
 
