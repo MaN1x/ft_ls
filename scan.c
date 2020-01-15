@@ -117,8 +117,15 @@ int		scan(t_file_info **path_list)
 	}
 	file_list = NULL;
 	g_total_mode = YES;
-	if ((tmp = *path_list)->next)
-		g_first_head = FOLLOW;
+//	if ((tmp = *path_list)->next)
+//		g_first_head = FOLLOW;
+	/*
+	 * после функции separate_file path_list становится NULL, т.к. там цикл работает, пока
+	 * path_list не закончится. Ты передаёшь туда указатель на указатель, и поэтому
+	 * path_list меняется и за перделами separate_file. Таким образом *path_list->next
+	 * вызывает ошибку
+	 */
+	tmp = *path_list;
 	while (tmp)
 	{
 		dir = NULL;
