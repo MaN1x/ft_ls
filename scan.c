@@ -80,8 +80,14 @@ int		check_path(t_file_info *path_list)
 	p = path_list;
 	while (p)
 	{
-		if (!(full_path = get_full_path(".", p->file_name)))
-			return (0);
+		if (*p->file_name != '/')
+		{
+			if (!(full_path = get_full_path(".", p->file_name)))
+				return (0);
+		}
+		else
+			if (!(full_path = get_full_path("", p->file_name)))
+				return (0);
 		if (!(use_lstat(p->file_name, full_path, &buf)))
 		{
 			free(full_path);
