@@ -6,13 +6,14 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 21:48:49 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/15 14:56:15 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/15 16:37:48 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
 extern t_total_mode		g_total_mode;
+extern t_first_head		g_first_head;
 
 void	delete_lst(t_file_info **path_list, t_file_info *p)
 {
@@ -110,7 +111,8 @@ int		scan(t_file_info **path_list)
 	}
 	file_list = NULL;
 	g_total_mode = YES;
-	tmp = *path_list;
+	if ((tmp = *path_list)->next)
+		g_first_head = FOLLOW;
 	while (tmp)
 	{
 		dir = NULL;

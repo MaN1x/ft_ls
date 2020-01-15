@@ -6,7 +6,7 @@
 /*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 14:52:44 by wanton            #+#    #+#             */
-/*   Updated: 2020/01/15 14:49:09 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/15 17:07:26 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 void	print_link_parent(char *path, mode_t st_mode)
 {
-	char		buf[BUF_SIZE];
+	char		buf[BUF_SIZE + 1];
+	int 		p;
 
 	if (S_ISLNK(st_mode))
 	{
-		ft_strclr(buf);
-		readlink(path, buf, BUF_SIZE);
+		p = readlink(path, buf, BUF_SIZE);
+		buf[p] = '\0';
 		ft_putstr(" -> ");
 		ft_putstr(buf);
 	}
@@ -43,4 +44,5 @@ void	get_file_acl(char *path)
 		ft_putchar(' ');
 	if (path)
 		free(path);
+	ft_putchar(' ');
 }
