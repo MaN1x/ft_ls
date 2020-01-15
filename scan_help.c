@@ -35,6 +35,7 @@ int		print_file_list(t_file_info *file_list)
 			print_long_list(dir);
 		g_first_head = FOLLOW;
 		g_line_break = NEXT_ELEM;
+		free(dir->dir_name);
 		free(dir);
 	}
 	return (1);
