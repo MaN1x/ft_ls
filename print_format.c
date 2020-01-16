@@ -66,7 +66,7 @@ void	long_format(t_dir *dir)
 	}
 }
 
-int 	help_print_list(char *name, int max, int kkk)
+int		help_print_list(char *name, int max, int kkk)
 {
 	ft_putstr(name);
 	ft_putspace((int)(max - ft_strlen(name)));

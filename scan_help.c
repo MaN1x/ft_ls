@@ -6,7 +6,7 @@
 /*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 11:50:17 by wanton            #+#    #+#             */
-/*   Updated: 2020/01/15 15:10:31 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/16 11:36:52 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int		print_file_list(t_file_info *file_list)
 
 	if (file_list)
 	{
+		g_first_head = FIRST;
 		if (!(dir = dir_new(".")))
 			return (0);
 		dir->file = file_list;
@@ -39,6 +40,23 @@ int		print_file_list(t_file_info *file_list)
 		free(dir);
 	}
 	return (1);
+}
+
+char	*use_gfp(char *c)
+{
+	char *full_path;
+
+	if (*c != '/')
+	{
+		if (!(full_path = get_full_path(".", c)))
+			return (NULL);
+	}
+	else
+	{
+		if (!(full_path = get_full_path("", c)))
+			return (NULL);
+	}
+	return (full_path);
 }
 
 void	add_param(t_file_info *p, struct stat buf)
@@ -78,10 +96,9 @@ int		use_lstat(char *name, char *path, struct stat *buf)
 			start_error_message(name);
 			ft_putstr_fd(": Permission denied\n", 2);
 		}
+		g_first_head = FOLLOW;
 	}
 	else
-	{
 		return (1);
-	}
 	return (0);
 }

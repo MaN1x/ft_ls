@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:24:53 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/15 14:32:59 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/16 12:18:03 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,18 @@ static void	check_flag(char *argv)
 	}
 }
 
-void		check_args(int argc, char **argv, t_file_info **path_list)
+t_file_info	*get_tmp_path(char *arg)
+{
+	t_file_info	*tmp_path;
+
+	if (!(tmp_path = file_new()))
+		return (NULL);
+	if (!(tmp_path->file_name = ft_strdup(arg)))
+		return (NULL);
+	return (tmp_path);
+}
+
+int			check_args(int argc, char **argv, t_file_info **path_list)
 {
 	int			arg_number;
 	t_file_info	*tmp_path;
@@ -62,14 +73,15 @@ void		check_args(int argc, char **argv, t_file_info **path_list)
 		else
 		{
 			flags = 0;
-			tmp_path = file_new();
-			tmp_path->file_name = ft_strdup(argv[arg_number]);
+			if (!(tmp_path = get_tmp_path(argv[arg_number])))
+				return (0);
 			file_add(path_list, tmp_path);
 		}
 	}
 	if (file_list_size(*path_list) == 0)
 	{
-		*path_list = file_new();
-		(*path_list)->file_name = ft_strdup(".");
+		if (!(*path_list = get_tmp_path(".")))
+			return (0);
 	}
+	return (1);
 }

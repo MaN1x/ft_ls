@@ -40,5 +40,5 @@ void		print_pw_size(t_file_info *tmp, int m_size)
 	p = tmp;
 	ft_putspace(m_size - ft_lennumber(tmp->st_nlink));
 	ft_putnbr(tmp->st_nlink);
-	ft_putchar('\t');
+	ft_putchar(' ');
 }

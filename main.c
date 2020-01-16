@@ -6,7 +6,7 @@
 /*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 13:11:26 by wanton            #+#    #+#             */
-/*   Updated: 2020/01/14 14:25:46 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/16 12:35:12 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_total_mode	g_total_mode = NO;
 t_first_head	g_first_head = FIRST;
 t_file_perm		g_file_perm = ALLOW;
 
-static void	free_path_list(t_file_info **path_list)
+void		free_path_list(t_file_info **path_list)
 {
 	t_file_info	*list;
 	t_file_info	*tmp;
@@ -69,9 +69,17 @@ int			main(int argc, char **argv)
 	t_file_info		*path_list;
 
 	path_list = NULL;
-	check_args(argc, argv, &path_list);
+	if (!(check_args(argc, argv, &path_list)))
+	{
+		free_path_list(&path_list);
+		return (0);
+	}
 	sort_path_list(&path_list);
-	scan(&path_list);
+	if (!(scan(&path_list)))
+	{
+		free_path_list(&path_list);
+		return (0);
+	}
 	free_path_list(&path_list);
-	return (0);
+	return (1);
 }

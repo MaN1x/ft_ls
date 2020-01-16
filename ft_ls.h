@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:20:43 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/15 16:51:19 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/16 11:52:33 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,11 @@ typedef enum			e_file_perm
 	DISALLOW
 }						t_file_perm;
 
-void					check_args(int argc, char **argv,
+int						check_args(int argc, char **argv,
 		t_file_info **path_list);
 int						scan(t_file_info **path_list);
 char					*get_full_path(char *path, char *file_name);
+void					free_path_list(t_file_info **path_list);
 
 /*
 **-----------------------------Print functions----------------------------------
@@ -100,6 +101,7 @@ int						max_len_st_nb(t_file_info *tmp);
 int						print_file_list(t_file_info *file_list);
 int						use_lstat(char *name, char *path, struct stat *buf);
 int						help_print_list(char *name, int max, int kkk);
+char					*use_gfp(char *c);
 void					print_dir(t_dir *dir);
 void					print_head(t_dir *dir);
 void					print_total(t_file_info	*tmp);

@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 21:48:49 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/15 16:37:48 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/16 11:36:31 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,8 @@ int		check_path(t_file_info *path_list)
 	p = path_list;
 	while (p)
 	{
-		if (*p->file_name != '/')
-		{
-			if (!(full_path = get_full_path(".", p->file_name)))
-				return (0);
-		}
-		else
-			if (!(full_path = get_full_path("", p->file_name)))
-				return (0);
+		if (!(full_path = use_gfp(p->file_name)))
+			return (0);
 		if (!(use_lstat(p->file_name, full_path, &buf)))
 		{
 			free(full_path);
@@ -112,20 +106,13 @@ int		scan(t_file_info **path_list)
 	separate_file(path_list, &file_list);
 	if (!(print_file_list(file_list)))
 	{
-		file_list = NULL;
+		free_path_list(&file_list);
 		return (0);
 	}
 	file_list = NULL;
 	g_total_mode = YES;
-//	if ((tmp = *path_list)->next)
-//		g_first_head = FOLLOW;
-	/*
-	 * после функции separate_file path_list становится NULL, т.к. там цикл работает, пока
-	 * path_list не закончится. Ты передаёшь туда указатель на указатель, и поэтому
-	 * path_list меняется и за перделами separate_file. Таким образом *path_list->next
-	 * вызывает ошибку
-	 */
-	tmp = *path_list;
+	if ((tmp = *path_list) && (tmp->next))
+		g_first_head = FOLLOW;
 	while (tmp)
 	{
 		dir = NULL;

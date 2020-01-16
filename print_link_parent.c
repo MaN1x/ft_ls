@@ -15,7 +15,7 @@
 void	print_link_parent(char *path, mode_t st_mode)
 {
 	char		buf[BUF_SIZE + 1];
-	int 		p;
+	int			p;
 
 	if (S_ISLNK(st_mode))
 	{

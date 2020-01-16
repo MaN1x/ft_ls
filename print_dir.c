@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:04:01 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/15 17:08:13 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/16 11:22:08 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void		print_long_list(t_dir *dir)
 		get_file_acl(get_full_path(dir->dir_name, tmp->file_name));
 		print_pw_size(tmp, m[0]);
 		ft_putstr(tmp->pw_name);
-		ft_putchar('\t');
+		ft_putstr("  ");
 		ft_putstr(tmp->gr_name);
 		ft_putstr("  ");
 		print_st_size(tmp, m[1]);
