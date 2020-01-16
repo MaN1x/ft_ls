@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:20:43 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/16 11:52:33 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/16 12:35:12 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ int						max_len_st_nb(t_file_info *tmp);
 int						print_file_list(t_file_info *file_list);
 int						use_lstat(char *name, char *path, struct stat *buf);
 int						help_print_list(char *name, int max, int kkk);
+int						max_len_name(t_file_info *tmp);
+int						max_len_name_gr(t_file_info *tmp);
 char					*use_gfp(char *c);
 void					print_dir(t_dir *dir);
 void					print_head(t_dir *dir);
@@ -116,6 +118,8 @@ void					print_long_list(t_dir *dir);
 void					add_param(t_file_info *p, struct stat buf);
 void					short_format(t_dir *dir);
 void					long_format(t_dir *dir);
+void					print_name(t_file_info *tmp, int name_size);
+void					print_name_gr(t_file_info *tmp, int size);
 t_file_info				*ft_take_elem(t_file_info *head, int n);
 
 /*

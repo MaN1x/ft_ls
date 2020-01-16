@@ -6,7 +6,7 @@
 /*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 12:52:05 by wanton            #+#    #+#             */
-/*   Updated: 2020/01/09 10:27:30 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/16 13:14:50 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,35 @@ int			max_len_pw_nb(t_file_info *tmp)
 
 void		print_pw_size(t_file_info *tmp, int m_size)
 {
-	t_file_info	*p;
-
-	p = tmp;
 	ft_putspace(m_size - ft_lennumber(tmp->st_nlink));
 	ft_putnbr(tmp->st_nlink);
 	ft_putchar(' ');
+}
+
+int 		max_len_name(t_file_info *tmp)
+{
+	t_file_info	*p;
+	int			res;
+	int			foo;
+
+	res = 0;
+	if (tmp)
+	{
+		p = tmp;
+		while (p)
+		{
+			foo = ft_strlen(p->pw_name);
+			if (res < foo)
+				res = foo;
+			p = p->next;
+		}
+	}
+	return (res);
+}
+
+void		print_name(t_file_info *tmp, int name_size)
+{
+	ft_putstr(tmp->pw_name);
+	ft_putspace(name_size - (int)ft_strlen(tmp->pw_name));
+	ft_putstr("  ");
 }

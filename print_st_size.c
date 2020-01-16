@@ -6,7 +6,7 @@
 /*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 12:55:38 by wanton            #+#    #+#             */
-/*   Updated: 2020/01/09 10:27:30 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/16 13:14:50 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,32 @@ void		print_st_size(t_file_info *tmp, int m_size)
 	ft_putspace(m_size - ft_lennumber(tmp->st_size));
 	ft_putnbr(tmp->st_size);
 	ft_putchar(' ');
+}
+
+int 		max_len_name_gr(t_file_info *tmp)
+{
+	t_file_info	*p;
+	int			res;
+	int			foo;
+
+	res = 0;
+	if (tmp)
+	{
+		p = tmp;
+		while (p)
+		{
+			foo = ft_strlen(p->gr_name);
+			if (res < foo)
+				res = foo;
+			p = p->next;
+		}
+	}
+	return (res);
+}
+
+void		print_name_gr(t_file_info *tmp, int size)
+{
+	ft_putstr(tmp->gr_name);
+	ft_putspace(size - (int)ft_strlen(tmp->gr_name));
+	ft_putstr("  ");
 }
