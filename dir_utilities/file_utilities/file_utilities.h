@@ -26,6 +26,7 @@ typedef struct			s_file_info
 	char				*gr_name;
 	off_t				st_size;
 	time_t				time;
+	dev_t				st_rdev;
 	unsigned long		block;
 	struct s_file_info	*next;
 }						t_file_info;

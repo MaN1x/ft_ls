@@ -53,6 +53,7 @@ void				scan_file(t_dir **dir, char *path, char *file_name)
 	file->st_size = buf.st_size;
 	file->time = buf.st_mtimespec.tv_sec;
 	file->block = buf.st_blocks;
+	file->st_rdev = buf.st_rdev;
 	file_add(&(*dir)->file, file);
 }
 

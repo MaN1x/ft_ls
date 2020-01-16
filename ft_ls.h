@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:20:43 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/16 13:14:50 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/16 13:45:35 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,13 @@ typedef enum			e_file_perm
 	ALLOW,
 	DISALLOW
 }						t_file_perm;
+
+typedef enum			e_file_type
+{
+	NORMAL,
+	C,
+	B
+}						t_file_type;
 
 int						check_args(int argc, char **argv,
 		t_file_info **path_list);

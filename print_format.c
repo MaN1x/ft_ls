@@ -6,7 +6,7 @@
 /*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 16:44:01 by wanton            #+#    #+#             */
-/*   Updated: 2020/01/16 13:22:11 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/16 13:49:03 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 extern t_line_break		g_line_break;
 extern t_file_perm		g_file_perm;
+extern t_file_type		g_file_type;
 
 void	short_format(t_dir *dir)
 {
@@ -75,9 +76,15 @@ void	print_file_type(mode_t st_mode)
 	else if (S_ISDIR(st_mode))
 		ft_putchar('d');
 	else if (S_ISBLK(st_mode))
+	{
 		ft_putchar('b');
+		g_file_type = B;
+	}
 	else if (S_ISCHR(st_mode))
+	{
 		ft_putchar('c');
+		g_file_type = C;
+	}
 	else if (S_ISSOCK(st_mode))
 		ft_putchar('s');
 	else if (S_ISFIFO(st_mode))

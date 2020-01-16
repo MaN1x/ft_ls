@@ -6,7 +6,7 @@
 /*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 11:50:17 by wanton            #+#    #+#             */
-/*   Updated: 2020/01/16 11:36:52 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/16 12:26:57 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	add_param(t_file_info *p, struct stat buf)
 	p->st_size = buf.st_size;
 	p->time = buf.st_mtimespec.tv_sec;
 	p->block = buf.st_blocks;
+	p->st_rdev = buf.st_rdev;
 }
 
 void	start_error_message(char *name)
