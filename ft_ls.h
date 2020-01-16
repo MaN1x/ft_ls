@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:20:43 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/16 12:35:12 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/16 13:14:50 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ void					short_format(t_dir *dir);
 void					long_format(t_dir *dir);
 void					print_name(t_file_info *tmp, int name_size);
 void					print_name_gr(t_file_info *tmp, int size);
+void					print_file_type(mode_t st_mode);
+void					print_rights(mode_t st_mode);
 t_file_info				*ft_take_elem(t_file_info *head, int n);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:04:01 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/16 13:08:04 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/16 13:24:02 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,8 @@ static void	print_rights2(mode_t st_mode)
 		ft_putchar('-');
 }
 
-static void	print_rights(mode_t st_mode)
+void		print_rights(mode_t st_mode)
 {
-	if (S_ISREG(st_mode))
-		ft_putchar('-');
-	if (S_ISLNK(st_mode))
-		ft_putchar('l');
-	if (S_ISDIR(st_mode))
-		ft_putchar('d');
 	if (st_mode & S_IRWXU & S_IRUSR)
 		ft_putchar('r');
 	else
@@ -111,7 +105,7 @@ void		print_long_list(t_dir *dir)
 	print_total(tmp);
 	while (tmp)
 	{
-		print_rights(tmp->st_mode);
+		print_file_type(tmp->st_mode);
 		get_file_acl(get_full_path(dir->dir_name, tmp->file_name));
 		print_pw_size(tmp, m[0]);
 		print_name(tmp, m[2]);

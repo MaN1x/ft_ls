@@ -6,7 +6,7 @@
 /*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 16:44:01 by wanton            #+#    #+#             */
-/*   Updated: 2020/01/15 16:51:51 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/16 13:22:11 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,25 @@ void	long_format(t_dir *dir)
 		}
 		dir = dir->next;
 	}
+}
+
+void	print_file_type(mode_t st_mode)
+{
+	if (S_ISREG(st_mode))
+		ft_putchar('-');
+	else if (S_ISLNK(st_mode))
+		ft_putchar('l');
+	else if (S_ISDIR(st_mode))
+		ft_putchar('d');
+	else if (S_ISBLK(st_mode))
+		ft_putchar('b');
+	else if (S_ISCHR(st_mode))
+		ft_putchar('c');
+	else if (S_ISSOCK(st_mode))
+		ft_putchar('s');
+	else if (S_ISFIFO(st_mode))
+		ft_putchar('p');
+	print_rights(st_mode);
 }
 
 int		help_print_list(char *name, int max, int kkk)
