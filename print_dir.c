@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:04:01 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/17 10:50:07 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/17 10:59:56 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void		print_list(t_file_info *tmp, int maxlen, int l, int col)
 		ft_putchar('\n');
 	}
 }
-
+//TODO ls -lR /dev/ нужно ли это все обрабатывать
 void		print_long_list(t_dir *dir)
 {
 	t_file_info	*tmp;

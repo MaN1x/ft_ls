@@ -23,7 +23,7 @@ typedef struct			s_dir
 	t_file_info			*file;
 	struct s_dir		*next;
 }						t_dir;
-
+//TODO проверить на лишнии функции
 t_dir					*dir_new(char *dir_name);
 void					dir_add(t_dir **dirh, char *dir_name);
 t_dir					*dir_getend(t_dir *dir);

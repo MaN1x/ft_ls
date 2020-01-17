@@ -73,6 +73,7 @@ int			check_args(int argc, char **argv, t_file_info **path_list)
 		else
 		{
 			flags = 0;
+			//TODO утечка tmp_path при одном аргументе 
 			if (!(tmp_path = get_tmp_path(argv[arg_number])))
 				return (0);
 			file_add(path_list, tmp_path);
