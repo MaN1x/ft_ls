@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:04:01 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/16 13:24:02 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/17 10:50:07 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,10 @@ void		print_list(t_file_info *tmp, int maxlen, int l, int col)
 void		print_long_list(t_dir *dir)
 {
 	t_file_info	*tmp;
-	int			m[4];
+	int			m[6];
 
 	tmp = dir->file;
-	m[0] = max_len_pw_nb(tmp);
-	m[1] = max_len_st_nb(tmp);
-	m[2] = max_len_name(tmp);
-	m[3] = max_len_name_gr(tmp);
+	take_size_const(m, tmp);
 	print_head(dir);
 	print_total(tmp);
 	while (tmp)
@@ -110,7 +107,7 @@ void		print_long_list(t_dir *dir)
 		print_pw_size(tmp, m[0]);
 		print_name(tmp, m[2]);
 		print_name_gr(tmp, m[3]);
-		print_st_size(tmp, m[1]);
+		print_st_size(tmp, m[1], m[4], m[5]);
 		print_time(tmp);
 		ft_putstr(tmp->file_name);
 		print_link_parent(get_full_path(dir->dir_name,

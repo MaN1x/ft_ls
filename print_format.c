@@ -6,7 +6,7 @@
 /*   By: wanton <wanton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 16:44:01 by wanton            #+#    #+#             */
-/*   Updated: 2020/01/16 13:49:03 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/17 10:50:07 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,16 @@ void	print_file_type(mode_t st_mode)
 	else if (S_ISFIFO(st_mode))
 		ft_putchar('p');
 	print_rights(st_mode);
+}
+
+void	take_size_const(int m[6], t_file_info *tmp)
+{
+	m[0] = max_len_pw_nb(tmp);
+	m[1] = max_len_st_nb(tmp);
+	m[2] = max_len_name(tmp);
+	m[3] = max_len_name_gr(tmp);
+	m[4] = max_len_major(tmp);
+	m[5] = max_len_minor(tmp);
 }
 
 int		help_print_list(char *name, int max, int kkk)

@@ -6,7 +6,7 @@
 /*   By: mjoss <mjoss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:20:43 by mjoss             #+#    #+#             */
-/*   Updated: 2020/01/16 13:45:35 by wanton           ###   ########.fr       */
+/*   Updated: 2020/01/17 10:38:48 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,13 +110,16 @@ int						use_lstat(char *name, char *path, struct stat *buf);
 int						help_print_list(char *name, int max, int kkk);
 int						max_len_name(t_file_info *tmp);
 int						max_len_name_gr(t_file_info *tmp);
+int						max_len_major(t_file_info *tmp);
+int						max_len_minor(t_file_info *tmp);
 char					*use_gfp(char *c);
 void					print_dir(t_dir *dir);
 void					print_head(t_dir *dir);
 void					print_total(t_file_info	*tmp);
 void					print_time(t_file_info	*tmp);
 void					print_pw_size(t_file_info	*tmp, int m_size);
-void					print_st_size(t_file_info	*tmp, int m_size);
+void					print_st_size(t_file_info	*tmp, int m_size, int ma,
+		int mi);
 void					print_link_parent(char *path, mode_t st_mode);
 void					get_file_acl(char *path);
 void					print_list(t_file_info *tmp, int maxlen, int l,
@@ -129,6 +132,7 @@ void					print_name(t_file_info *tmp, int name_size);
 void					print_name_gr(t_file_info *tmp, int size);
 void					print_file_type(mode_t st_mode);
 void					print_rights(mode_t st_mode);
+void					take_size_const(int m[6], t_file_info	*tmp);
 t_file_info				*ft_take_elem(t_file_info *head, int n);
 
 /*
