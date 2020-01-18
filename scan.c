@@ -22,12 +22,12 @@ void	delete_lst(t_file_info **path_list, t_file_info *p)
 	tmp = *path_list;
 	if (tmp == p)
 		*path_list = p->next;
-	else
-	{
+	else {
 		while (tmp->next != p)
 			tmp = tmp->next;
 		tmp->next = p->next;
 	}
+	free(p->file_name);
 	free(p);
 }
 
@@ -95,26 +95,23 @@ int		check_path(t_file_info *path_list)
 	return (1);
 }
 
-int		scan(t_file_info **path_list)
-{
-	t_dir		*dir;
+int scan(t_file_info **path_list) {
+	t_dir *dir;
 	t_file_info *file_list;
 	t_file_info *tmp;
 
 	if (!(check_path(*path_list)))
 		return (0);
 	separate_file(path_list, &file_list);
-	if (!(print_file_list(file_list)))
-	{
+	if (!(print_file_list(file_list))) {
 		free_path_list(&file_list);
 		return (0);
 	}
-	file_list = NULL;
+	free_path_list(&file_list);
 	g_total_mode = YES;
 	if ((tmp = *path_list) && (tmp->next))
 		g_first_head = FOLLOW;
-	while (tmp)
-	{
+	while (tmp) {
 		dir = NULL;
 		dir_add(&dir, tmp->file_name);
 		scan_directory(dir);

@@ -18,13 +18,9 @@ add_executable(ft_ls
         dir_utilities/file_utilities/free_files.c
         dir_utilities/file_utilities/sort_file_list.c
         dir_utilities/dir_add.c
-        dir_utilities/dir_getend.c
-        dir_utilities/dir_list_size.c
-        dir_utilities/dir_list_swap.c
         dir_utilities/dir_new.c
         dir_utilities/dir_utilities.h
         dir_utilities/free_dir_list.c
-        dir_utilities/sort_dir_list.c
         lib/ft_atoi.c
         lib/ft_bzero.c
         lib/ft_isalnum.c

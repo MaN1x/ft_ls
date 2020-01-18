@@ -90,7 +90,7 @@ void		print_list(t_file_info *tmp, int maxlen, int l, int col)
 		ft_putchar('\n');
 	}
 }
-//TODO ls -lR /dev/ нужно ли это все обрабатывать
+
 void		print_long_list(t_dir *dir)
 {
 	t_file_info	*tmp;

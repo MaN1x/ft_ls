@@ -50,7 +50,6 @@ typedef enum			e_scan_mode
 
 typedef enum			e_sort_type
 {
-	NO_SORT,
 	ASCII_SORT,
 	TIMESTAMP_SORT
 }						t_sort_type;

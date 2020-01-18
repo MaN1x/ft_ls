@@ -35,6 +35,7 @@ void		free_path_list(t_file_info **path_list)
 		if (list->file_name)
 			free(list->file_name);
 		free(list);
+		list = NULL;
 		list = tmp;
 	}
 }
